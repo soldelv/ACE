@@ -4431,8 +4431,6 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 			egresosTotalesAdministracionPeriodo = 0
 			resumenPeriodo = 0
 			
-			#------------------------------------------
-			
 			resultado = 0
 			if resultado == 0:
 				admin = Administracion.objects.get(id = 1)
@@ -4470,14 +4468,12 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 										else:
 											egresosTotalesConsorcioDia = egresosTotalesConsorcioDia +f.monto
 							resumenDia = ingresosTotalesConsorcioDia - egresosTotalesConsorcioDia
-					
 					return render_to_response('mostrarEstadisticas1.html',{'tiempo':tiempo, 'caja':caja,
-					'resumenDia':resumenDia,
 					'ingresosTotalesAdministracionDia':ingresosTotalesAdministracionDia,
 					'egresosTotalesAdministracionDia':egresosTotalesAdministracionDia,
 					'ingresosTotalesConsorcioDia': ingresosTotalesConsorcioDia,
 					'egresosTotalesConsorcioDia': egresosTotalesConsorcioDia,
-					'administracion':admin, 'consorcioDato': consorcioDato,
+					'administracion':admin, 'consorcioDato': consorcioDato,'resumenDia':resumenDia,
 					'dia':dia 
 					} ,context_instance=RequestContext(request))		
 
@@ -4528,12 +4524,12 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 											else:
 												egresosTotalesConsorcioMes = egresosTotalesConsorcioMes +f.monto
 							resumenMes = ingresosTotalesConsorcioMes - egresosTotalesConsorcioMes
-				return render_to_response('mostrarEstadisticas1.html',{'tiempo':tiempo, 'caja':caja,'ingresosTotalesAdministracionMes':ingresosTotalesAdministracionMes,
-					'mes':mes,'egresosTotalesAdministracionMes':egresosTotalesAdministracionMes,
+					return render_to_response('mostrarEstadisticas1.html',{'tiempo':tiempo, 'caja':caja,'ingresosTotalesAdministracionMes':ingresosTotalesAdministracionMes,
+					'egresosTotalesAdministracionMes':egresosTotalesAdministracionMes,
 					'ingresosTotalesConsorcioMes': ingresosTotalesConsorcioMes,
 					'egresosTotalesConsorcioMes': egresosTotalesConsorcioMes,
-					'administracion':admin, 'consorcioDato': consorcioDato,'resumenMes':resumenMes
-					
+					'administracion':admin, 'consorcioDato': consorcioDato,'resumenMes':resumenMes,
+					'mes':mes
 					} ,context_instance=RequestContext(request))	
 					
 					
@@ -4541,7 +4537,8 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 				
 				if tiempo == '3':#Si elijo un periodo de tiempo
 					if fechaInicio >= fechaCierre: #DEBERIA APARECER ALGO QUE MUESTRE ERROR
-						return render_to_response('mostrarEstadisticasEfectivo.html',context_instance=RequestContext(request))
+						print('ERROR DE FECHAS')
+						return HttpResponseRedirect('/')
 					#---------------------------------
 					#----------------------------# # Si elijo la ADMINISTRACION
 					if caja == '1': # Si elijo la ADMINISTRACION
@@ -4555,7 +4552,7 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 											ingresosTotalesAdministracionPeriodo = ingresosTotalesAdministracionPeriodo + f.monto
 										else:
 											egresosTotalesAdministracionPeriodo = egresosTotalesAdministracionPeriodo +f.monto
-						resumenPeriodo = ingresosTotalesAdministracionPeriodo - egresosTotalesAdministracionPeriodo					
+						resumenPeriodo = ingresosTotalesAdministracionPeriodo - egresosTotalesAdministracionPeriodo						
 					#----------------------------#Si la Caja elegida es el CONSORCIO
 					else:#Si la Caja elegida es el CONSORCIO
 						verificacionConsorcioPeriodo = Consorcio.objects.filter(id =consorcio)
@@ -4575,7 +4572,7 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 											else:
 												egresosTotalesConsorcioPeriodo = egresosTotalesConsorcioPeriodo +f.monto
 							resumenPeriodo = ingresosTotalesConsorcioPeriodo - egresosTotalesConsorcioPeriodo
-				return render_to_response('mostrarEstadisticas1.html',{ 'tiempo':tiempo, 'caja':caja,
+					return render_to_response('mostrarEstadisticas1.html',{ 'tiempo':tiempo, 'caja':caja,
 					'ingresosTotalesAdministracionPeriodo':ingresosTotalesAdministracionPeriodo,
 					'egresosTotalesAdministracionPeriodo':egresosTotalesAdministracionPeriodo,
 					'ingresosTotalesConsorcioPeriodo': ingresosTotalesConsorcioPeriodo,
@@ -4584,8 +4581,8 @@ def mostrarEstadisticas(request):	#Funcion para los MOVIMIENTOS TOTALES
 					'fechaInicio':fechaInicio, 'fechaCierre': fechaCierre
 					} ,context_instance=RequestContext(request))	
 
-				
-		return render_to_response('mostrarEstadisticas.html',context_instance=RequestContext(request))	
+			
+		return render_to_response('mostrarEstadisticas.html',context_instance=RequestContext(request))
 	else:
 		 return redirect('/AdminConsorcios/usuario/iniciarsesion/')
 		 
@@ -4619,6 +4616,7 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 			egresosTotalesAdministracionMes = 0
 			resumenMes = 0
 			
+			
 			#------------------------------------------
 			
 			#----------VARIABLES PARA UN PERIODO ESPECIFICO
@@ -4627,8 +4625,6 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 			ingresosTotalesAdministracionPeriodo = 0
 			egresosTotalesAdministracionPeriodo = 0
 			resumenPeriodo = 0
-			
-			#------------------------------------------
 			
 			resultado = 0
 			if resultado == 0:
@@ -4658,7 +4654,7 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 							#Traigo todas las cajas del consorcio donde puedo sumar datos y las facturas	
 							consorcioDato = Consorcio.objects.get(id = consorcio)
 							facturasDiaEspecificoConsorcio = Factura.objects.all().filter( fechaPago=dia)
-							cajasConsorcioDia = CajaConsorcio.objects.all().filter(consorcio_id = consorcio, tipoDeCaja = '3')
+							cajasConsorcioDia = CajaConsorcio.objects.all().filter(consorcio_id = consorcio,tipoDeCaja = 3)
 							for f in facturasDiaEspecificoConsorcio:
 								for c in cajasConsorcioDia:
 									if c.id == f.cajaConsorcio_id :
@@ -4667,14 +4663,12 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 										else:
 											egresosTotalesConsorcioDia = egresosTotalesConsorcioDia +f.monto
 							resumenDia = ingresosTotalesConsorcioDia - egresosTotalesConsorcioDia
-					
 					return render_to_response('mostrarEstadisticas1.html',{'tiempo':tiempo, 'caja':caja,
-					'resumenDia':resumenDia,
 					'ingresosTotalesAdministracionDia':ingresosTotalesAdministracionDia,
 					'egresosTotalesAdministracionDia':egresosTotalesAdministracionDia,
 					'ingresosTotalesConsorcioDia': ingresosTotalesConsorcioDia,
 					'egresosTotalesConsorcioDia': egresosTotalesConsorcioDia,
-					'administracion':admin, 'consorcioDato': consorcioDato,
+					'administracion':admin, 'consorcioDato': consorcioDato,'resumenDia':resumenDia,
 					'dia':dia 
 					} ,context_instance=RequestContext(request))		
 
@@ -4691,7 +4685,7 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 						mes = '0'+ mes
 					#----------------------------# # Si elijo la ADMINISTRACION	
 					if caja == '1': # Si elijo la ADMINISTRACION
-						cajasAdministracion = CajaAdministracion.objects.all().filter(tipoDeCaja = '3')
+						cajasAdministracion = CajaAdministracion.objects.all().filter(tipoDeCaja = 3)
 						facturasMesEspecificoAdministracion = Factura.objects.all()
 						for f in facturasMesEspecificoAdministracion:
 							for c in cajasAdministracion:
@@ -4713,7 +4707,7 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 						else:#Si existe el consorcio, prosigo
 							consorcioDato = Consorcio.objects.get(id = consorcio)
 							facturasMesEspecificoConsorcio = Factura.objects.all()
-							cajasConsorcioMes = CajaConsorcio.objects.all().filter(consorcio_id = consorcio, tipoDeCaja = '3')
+							cajasConsorcioMes = CajaConsorcio.objects.all().filter(consorcio_id = consorcio,tipoDeCaja = 3)
 							for c in cajasConsorcioMes:
 								for f in facturasMesEspecificoConsorcio:
 									fechaString= str(f.fechaPago)
@@ -4725,12 +4719,12 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 											else:
 												egresosTotalesConsorcioMes = egresosTotalesConsorcioMes +f.monto
 							resumenMes = ingresosTotalesConsorcioMes - egresosTotalesConsorcioMes
-				return render_to_response('mostrarEstadisticas1.html',{'tiempo':tiempo, 'caja':caja,'ingresosTotalesAdministracionMes':ingresosTotalesAdministracionMes,
-					'mes':mes,'egresosTotalesAdministracionMes':egresosTotalesAdministracionMes,
+					return render_to_response('mostrarEstadisticas1.html',{'tiempo':tiempo, 'caja':caja,'ingresosTotalesAdministracionMes':ingresosTotalesAdministracionMes,
+					'egresosTotalesAdministracionMes':egresosTotalesAdministracionMes,
 					'ingresosTotalesConsorcioMes': ingresosTotalesConsorcioMes,
 					'egresosTotalesConsorcioMes': egresosTotalesConsorcioMes,
-					'administracion':admin, 'consorcioDato': consorcioDato,'resumenMes':resumenMes
-					
+					'administracion':admin, 'consorcioDato': consorcioDato,'resumenMes':resumenMes,
+					'mes':mes
 					} ,context_instance=RequestContext(request))	
 					
 					
@@ -4738,11 +4732,12 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 				
 				if tiempo == '3':#Si elijo un periodo de tiempo
 					if fechaInicio >= fechaCierre: #DEBERIA APARECER ALGO QUE MUESTRE ERROR
+						print('ERROR DE FECHAS')
 						return render_to_response('mostrarEstadisticasEfectivo.html',context_instance=RequestContext(request))
 					#---------------------------------
 					#----------------------------# # Si elijo la ADMINISTRACION
 					if caja == '1': # Si elijo la ADMINISTRACION
-						cajasAdministracion = CajaAdministracion.objects.all().filter(tipoDeCaja = '3')
+						cajasAdministracion = CajaAdministracion.objects.all().filter(tipoDeCaja = 3)
 						facturasPeriodoAdministracion = Factura.objects.all()
 						for f in facturasPeriodoAdministracion:
 							for c in cajasAdministracion:
@@ -4752,7 +4747,7 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 											ingresosTotalesAdministracionPeriodo = ingresosTotalesAdministracionPeriodo + f.monto
 										else:
 											egresosTotalesAdministracionPeriodo = egresosTotalesAdministracionPeriodo +f.monto
-						resumenPeriodo = ingresosTotalesAdministracionPeriodo - egresosTotalesAdministracionPeriodo					
+						resumenPeriodo = ingresosTotalesAdministracionPeriodo - egresosTotalesAdministracionPeriodo						
 					#----------------------------#Si la Caja elegida es el CONSORCIO
 					else:#Si la Caja elegida es el CONSORCIO
 						verificacionConsorcioPeriodo = Consorcio.objects.filter(id =consorcio)
@@ -4762,7 +4757,7 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 						else:#Si existe el consorcio, prosigo
 							consorcioDato = Consorcio.objects.get(id = consorcio)
 							facturasPeriodoEspecificoConsorcio = Factura.objects.all()
-							cajasConsorcioPeriodo = CajaConsorcio.objects.all().filter(consorcio_id = consorcio, tipoDeCaja = '3')
+							cajasConsorcioPeriodo = CajaConsorcio.objects.all().filter(consorcio_id = consorcio,tipoDeCaja = 3)
 							for c in cajasConsorcioPeriodo:
 								for f in facturasPeriodoEspecificoConsorcio:
 									if c.id == f.cajaConsorcio_id :
@@ -4772,19 +4767,25 @@ def mostrarEstadisticasEfectivo(request):	#Funcion para los MOVIMIENTOS de la cu
 											else:
 												egresosTotalesConsorcioPeriodo = egresosTotalesConsorcioPeriodo +f.monto
 							resumenPeriodo = ingresosTotalesConsorcioPeriodo - egresosTotalesConsorcioPeriodo
-				return render_to_response('mostrarEstadisticas1.html',{ 'tiempo':tiempo, 'caja':caja,
+					return render_to_response('mostrarEstadisticas1.html',{ 'tiempo':tiempo, 'caja':caja,
 					'ingresosTotalesAdministracionPeriodo':ingresosTotalesAdministracionPeriodo,
 					'egresosTotalesAdministracionPeriodo':egresosTotalesAdministracionPeriodo,
 					'ingresosTotalesConsorcioPeriodo': ingresosTotalesConsorcioPeriodo,
 					'egresosTotalesConsorcioPeriodo': egresosTotalesConsorcioPeriodo,
 					'administracion':admin, 'consorcioDato': consorcioDato,'resumenPeriodo':resumenPeriodo,
 					'fechaInicio':fechaInicio, 'fechaCierre': fechaCierre
-					} ,context_instance=RequestContext(request))	
-
+					} ,context_instance=RequestContext(request))
 				
 		return render_to_response('mostrarEstadisticasEfectivo.html',context_instance=RequestContext(request))	
 	else:
 		 return redirect('/AdminConsorcios/usuario/iniciarsesion/')
+	
+				# if tiempo == '3':#Si elijo un periodo de tiempo
+					# if fechaInicio >= fechaCierre: #DEBERIA APARECER ALGO QUE MUESTRE ERROR
+						# return render_to_response('mostrarEstadisticasEfectivo.html',context_instance=RequestContext(request))
+	
+	
+	#return render_to_response('mostrarEstadisticasEfectivo.html',context_instance=RequestContext(request))
 	
 def arqueoCajas(request):
 	if request.user.is_authenticated():#Si el usuario esta identificado
