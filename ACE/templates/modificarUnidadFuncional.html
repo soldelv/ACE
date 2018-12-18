@@ -1,0 +1,228 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l2"></div>
+        <div class="card col s12 m8 l8 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Modificar Unidad Funcional</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+          <div class="log row">
+            <div class="input-field col s3">
+          <input id="consorcio" name="consorcio" type="text" class="validate" value = "{{consorcio.id}}">
+          <label for="consorcio" center>Consorcio</label>
+        </div>
+	
+		{% if validacion == 1 %} 
+			         <div class="lo row">
+      <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      
+      <h4>¿Esta seguro de que quiere eliminar la caja?</h4>
+      <h4 style="color: red;">Los datos eliminados no se recuperaran.</h4>
+    </div>
+    <div class="modal-footer">
+      <button class="btn waves-effect waves-light center" type="submit" name="valor" value="1">Si</button>
+      <button class="btn waves-effect waves-light center" type="submit" name="valor" value="2">No</button>
+
+    </div>
+  </div>
+  </div> 
+			{% endif %}
+		
+		    <div class="input-field col s3">
+    <select name="estaAlquilado" id="estaAlquilado" required="required" class="validate"> 
+      
+	  <option value="" disabled selected>¿Esta Alquilado?</option>
+      {% if alquilado != True %}
+	  <option value="True">SI</option>
+	  <option selected="selected" value="{{alquilado}}">NO</option>
+	  {% else %}
+      <option value="False">NO</option>
+	   <option selected="selected" value="{{alquilado}}">SI </option>
+	  {% endif %}
+	 
+    </select>
+</div>
+	
+
+        <div class="input-field col s3">
+          <input id="ndepto" name="ndepto" type="text" disabled=”disabled” class="validate" value = "{{unidadFuncional}}">
+          <label for="ndepto" center>Unidad Funcional</label>
+        </div>
+		
+		        <div class="input-field col s3">
+          <input id="depto" name="depto" type="text" class="validate" value = "{{pisoDepartamento}}">
+          <label for="depto" center>Piso y Departamento</label>
+        </div>
+         
+         
+      <div class="input-field col s6">
+    <select name="dato" id="dato"  required="required" class="validate"> 
+      <option value="" disabled selected>¿Desea Modificar los Datos del Propietario?</option>
+      <option value="0">SI</option>
+      <option value="1">NO</option>
+    </select>
+</div>
+</div>
+
+<div class="dat" id="dat" style="display: none;">
+       <div class="log row">
+        <p>Datos del Propietario:</p><br>
+          <div class="input-field col s3">
+          <input id="nombre" name="nombre" type="text" class="validate" value = "{{propietario.nombre}}">
+          <label for="nombre" center>Nombre</label>
+        </div>
+     
+          <div class="input-field col s3">
+          <input id="apellido" name="apellido" type="text" class="validate" value = "{{propietario.apellido}}" >
+          <label for="apellido" center>Apellido</label>
+        </div>
+      
+          <div class="input-field col s3">
+          <input id="dni" name="dni" type="number" class="validate" value = "{{propietario.dni}}">
+          <label for="dni" center>DNI</label>
+        </div>
+     
+         <div class="log row">
+          <div class="input-field col s3">
+          <input id="email" name="email" type="email" class="validate" value = "{{propietario.email}}">
+          <label for="email" center>Email</label>
+        </div>
+     
+          <div class="input-field col s2">
+          <input id="telFijo" name="telFijo" type="number" class="validate" value = "{{propietario.telFijo}}">
+          <label for="telFijo" center>Telefono Fijo</label>
+        </div>
+     
+          <div class="input-field col s2">
+          <input id="celular" name="celular" type="number" class="validate" value = "{{propietario.celular}}">
+          <label for="celular" center>Celular</label>
+        </div>
+   
+			<div class="input-field col s3">
+          <input id="direccion" name="direccion" type="text" class="validate" value = "{{propietario.direccion}}">
+          <label for="direccion" center>Direccion</label>
+        </div>
+   
+          <div class="input-field col s3">
+          <input id="localidad" name="localidad" type="text" class="validate" value = "{{propietario.localidad}}">
+          <label for="localidad" center>Localidad</label>
+        </div>
+     
+
+          <div class="input-field col s2">
+          <input id="cp" name="cp" type="text" class="datepicker validate" value = "{{propietario.cp}}">
+          <label for="cp" center>Codigo Postal</label>
+        </div>
+      </div> 
+  </div>
+   </div>
+
+<div class="inq" id="inq" style="display: none;">
+<div class="row">
+        <p>Datos del Inquilino:</p><br>
+          <div class="input-field col s3">
+          <input id="nombres" name="nombres" type="text" class="validate" value = "{{inquilino.nombre}}">
+          <label for="nombres" center>Nombre</label>
+        </div>
+     
+          <div class="input-field col s3">
+          <input id="apellidos" name="apellidos" type="text" class="validate" value = "{{inquilino.apellido}}">
+          <label for="apellidos" center>Apellido</label>
+        </div>
+      
+          <div class="input-field col s3">
+          <input id="dnis" name="dnis" type="number" class="validate" value = "{{inquilino.dni}}" >
+          <label for="dnis" center>DNI</label>
+        </div>
+     
+         <div class="row">
+          <div class="input-field col s3">
+          <input id="emails" name="emails" type="email" class="validate" value = "{{inquilino.email}}">
+          <label for="emails" center>Email</label>
+        </div>
+     
+          <div class="input-field col s2">
+          <input id="telFijos" name="telFijos" type="number" class="validate" value = "{{inquilino.telFijo}}">
+          <label for="telFijos" center>Telefono Fijo</label>
+        </div>
+     
+          <div class="input-field col s2">
+          <input id="celulars" name="celulars" type="number" class="validate" value = "{{inquilino.celular}}">
+          <label for="celulars" center>Celular</label>
+        </div>
+   
+      </div> 
+</div>
+</div>
+
+
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" id="agregar" type="submit" name="action">Modificar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l2"></div>
+      
+	</div>
+	
+
+<script>
+  //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});  
+    
+  $('#dato').change(function() {
+    
+    if ($('#dato').val() == 0)
+    {
+        $(".dat").show();
+    };
+    
+    if ($('#dato').val() == 1)
+    {
+        $(".dat").hide();
+        document.getElementById("nombre").required = false;
+        document.getElementById("apellido").required = false;
+        document.getElementById("dni").required = false;
+        document.getElementById("telFijo").required = false;
+        document.getElementById("celular").required = false;
+		document.getElementById("direccion").required = false;
+        document.getElementById("localidad").required = false;
+        document.getElementById("cp").required = false;
+
+    };});
+
+  $('#estaAlquilado').change(function() {
+    
+    if ($('#estaAlquilado').val() == "True")
+    {
+        $(".inq").show();
+    };
+    
+    if ($('#estaAlquilado').val() == "False")
+    {
+        $(".inq").hide();
+        document.getElementById("nombres").required = false;
+        document.getElementById("apellidos").required = false;
+        document.getElementById("dnis").required = false;
+        document.getElementById("telFijos").required = false;
+        document.getElementById("celulars").required = false;
+
+    };
+    
+});</script>
+  {% endblock %}

@@ -1,0 +1,176 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+ <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+     
+    <div class="col s12 m2 l2"></div>
+        <div class="card col s12 m8 l8 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Modificar Reclamo</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+    
+      
+    <div class="input-field col s4">
+        <input name="nroReclamo" id="nroReclamo" type="number" class="validate" value="{{id}}">
+        <label for="nroReclamo">Numero de Reclamo</label>
+</div>
+ 
+
+      
+         
+        <div class="input-field col s4">
+         <input id="fechas" name="fechas" type="date" class="validate" value="{{fecha|date:'Y-m-d'}}">
+     <label for="fechas">Fecha</label>
+       </div>
+    
+      
+    <div class="input-field col s4">
+        <input name="consorcios" id="consorcios" type="number" class="validate" value="{{consorcio}}">
+        <label for="consorcios">Nro del Consorcio</label>
+</div>
+  
+  
+
+
+        
+           <div class="input-field col s3">
+    <select name="ubicacion" id="ubicacion" required="required" class="validate">
+      <option value="" disabled selected>Elige Ubicacion</option>
+	  {% if ubicacion != "Particular" %}
+      <option value="Particular">Particular</option>
+	  {% endif %}
+	  {% if ubicacion != "Comun" %}
+      <option value="Comun">Comun</option>
+	  {% endif %}
+	  <option selected="selected" value="{{ubicacion}}">{{ubicacion}}</option>
+    </select>
+</div>
+
+  <div class="nro" id="nro" style="display: none;">
+
+    <div class="input-field col s3">
+          <input id="numero" name="numero" type="number" class="validate" value="{{unidadFuncional}}">
+          <label for="numero" center>Unidad Funcional</label>
+        </div>
+    <div class="input-field col s3">
+        <input name="piso" id="piso" type="text" class="validate"  value="{{piso}}" >
+        <label for="piso">Piso y Departamento</label>
+</div>
+
+  </div>
+           <div class="input-field col s3">
+    <select name="estado" required="required" class="validate">
+      <option value="" disabled selected>Estado</option>
+	  {% if estado != "Iniciado" %}
+      <option value="Iniciado">Iniciado</option>
+	  {% endif %}
+	  {% if estado != "Pendiente" %}
+      <option value="Pendiente">Pendiente</option>
+	  {% endif %}
+	  {% if estado != "Terminado" %}
+    <option value="Terminado">Terminado</option>
+	{% endif %}
+	<option selected="selected" value="{{estado}}">{{estado}}</option>
+    </select>
+</div>
+  
+       <div class="row">
+    <div class="row"></div> 
+	<div class="row"></div>
+          <div class="input-field">
+             <input id="observaciones" name="observaciones" type="text" class="materialize-textarea validate" value="{{descripcion}}"></input>
+          <label for ="observaciones">Observaciones</label>
+        </div>
+      </div>  
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Modificar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l2"></div>
+      
+	</div>
+	
+	<script>    $('#textarea1').val(' ');
+  M.textareaAutoResize($('#textarea1'));</script>
+    <script>
+	
+	//valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+	$("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+      
+	  $('#dato').change(function() {
+	   
+    
+    if($('#dato').val() == '1'){
+      $(".dat").show();
+    };
+    if($('#dato').val() == '2'){
+      $(".dat").hide();
+		document.getElementById("ubicacion").required = false;
+        document.getElementById("numero").required = false;
+        document.getElementById("estado").required = false;
+        document.getElementById("descripcion").required = false;
+    };
+    });
+	
+    $('#valor').change(function() {
+    
+    if($('#valor').val() == '1'){
+      $(".mod").show();
+    };
+    if($('#valor').val() == '2'){
+      $(".mod").hide();
+      document.getElementById("fechas").required = false;
+      document.getElementById("consorcios").required = false;
+    };
+    });
+    $('#ubicacion').change(function() {
+    
+    if($('#ubicacion').val() == 'Particular'){
+      $(".nro").show();
+    };
+    if($('#ubicacion').val() == 'Comun'){
+      $(".nro").hide();
+      document.getElementById("numero").required = false;
+    };
+    });
+   //Calendario
+
+ $(document).ready(function(){
+    $('.datepicker').pickadate({
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+    selectMonths: true,
+    selectYears: 100, // Puedes cambiarlo para mostrar más o menos años
+    today: 'Hoy',
+    clear: 'Limpiar',
+    close: 'Ok',
+    closeOnSelect: true,
+    labelMonthNext: 'Siguiente mes',
+    labelMonthPrev: 'Mes anterior',
+    labelMonthSelect: 'Selecciona un mes',
+    labelYearSelect: 'Selecciona un año',
+    format: 'yyyy-mm-dd',
+   onClose: function() {
+        valid();
+    }
+     });
+  });
+
+
+        </script>
+  {% endblock %}

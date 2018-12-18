@@ -1,0 +1,133 @@
+{% extends "ejemplo.html" %}
+{% block content %}
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css"> 
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m3 l2"></div>
+        <div class="card col s12 m6 l8 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Modificar Consorcio</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+         <div class="log row">
+        <div class="input-field col s4">
+          <input id="consorcio" name="consorcio" type="text" class="validate" required>
+          <label for="consorcio">Consorcio</label>
+       </div> 
+       <div class="input-field col s4">
+     <input id="direccion" name="direccion" type="text" class="validate" required>
+          <label for="direccion">Dirección</label>
+</div>    
+<div class="input-field col s4">
+   <input id="localidad" name="localidad" type="text" class="validate" required>
+          <label for="localidad" center>Localidad</label>
+</div>
+      </div>
+          <div class="log row">
+    <div class="input-field col s3">
+    <input id="cp" name="cp" type="text" class="validate" required>
+          <label for="cp">Codigo Postal</label>
+</div> 
+<div class="input-field col s3">
+      <input id="cuit" name="cuit" type="number" class="validate" required>
+          <label for="cuit" center>Cuit</label>
+          </div>
+              <div class="input-field col s3">
+       <input id="inicioAdministracion" name="inicioAdministracion" type="date" class="datepicker validate" required>
+          <label for="inicioAdministracion" center>Inicio Administracion</label>
+          </div>  
+         
+        <div class="input-field col s3">
+       <input id="inicioActividadConsorcio" name="inicioActividadConsorcio" type="date" class="datepicker validate" required>
+          <label for="inicioActividadConsorcio" center>Inicio Actividad Consorcio</label>
+          </div>  
+       
+  </div>
+
+         <div class="log row">
+
+          <div class="input-field col s4">
+          <select name="actividadEconomica">
+      <option value="" disabled selected>Actividad Economica</option>
+      <option value="Administracion de Fondos del Consorcio">Administracion de Fondos del Consorcio</option>
+    </select>
+        </div>
+         <div class="input-field col s4">
+        <select name="responsable">
+      <option value="" disabled selected>Responsable</option>
+      <option value="Ricardo">Ricardo</option>
+      <option value="Rocio">Rocio</option>
+      <option value="Sebastian">Sebastian</option>
+    </select>
+          </div>
+            <div class="input-field col s4">
+       <select name="responsabilidadIVA">
+      <option value="" disabled selected>Responsabilidad IVA</option>
+      <option value="Responsable">Responsable Inscripto</option>
+      <option value="Monotributista">Monotributista</option>
+      <option value="Exento">Exento</option>
+    <option value="Consumidor Final">Consumidor Final</option>
+    </select>
+          </div>
+        </div>
+         <div class="log row">
+
+          <div class="input-field col s2">
+       <input id="suterh" name="suterh" type="text" class="validate" required>
+          <label for="suterh" center>Suterh</label>
+          </div>
+      <div class="input-field col s3">
+      <input id="cc" name="cc" type="number" class="validate" min="0" required>
+          <label for="cc" center>Cantidad de Cocheras</label>
+          </div> 
+           <div class="input-field col s3">
+      <input id="unidadfuncional" name="unidadfuncional" type="number" class="validate"  min="1" required>
+          <label for="unidadfuncional" center>Unidades Funcionales</label>
+          </div>
+
+          <div class="input-field col s2">
+       <input id="cantidadAsensores" name="cantidadAsensores" type="number" class="validate" min="0" required>
+          <label for="cantidadAsensores" center>Cantidad Asensores</label>  </div>
+          <div class="input-field  col s2">
+          <input id="cantidadCalderas" name="cantidadCalderas" type="number" class="validate" min="0" required>
+          <label for="cantidadCalderas" center>Cantidad Calderas</label>
+        
+        </div>
+        </div>
+        
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m3 l2"></div>
+      
+	</div>
+	
+</div>
+        <script>
+          //Calendario
+
+  $('.datepicker').pickadate({
+     selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    format: 'dd/mm/yyyy',
+   onClose: function() {
+        valid();
+    }
+     });
+
+
+        </script>
+ {% endblock %}

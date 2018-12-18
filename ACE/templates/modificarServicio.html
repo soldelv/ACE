@@ -1,0 +1,85 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+
+<!-- jQuery UI !-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL}}js/jquery.easing.1.3.js"></script>
+
+  
+    <div class="col s12 m3 l4"></div>
+        <div class="card col s12 m6 l4 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Modificar Servicio</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+         <div class="log row">
+          <div class="input-field">
+          <input id="nomServicio" name="nomServicio" type="text" class="validate" required>
+          <label for="nomServicio" center>Servicio a Modificar</label>
+        </div>
+      </div>
+        <div class="lo row">
+    <div class="input-field">
+      <select name="valor" id="valor"  required="required" class="validate">
+      <option value="" disabled selected>¿Desea modificar el nombre del Servicio?</option>
+      <option value="1">Si</option>
+      <option value="2">No</option>
+    
+    </select>
+  </div>
+  </div>
+<div class="nom row" id="nom" style="display: none;">
+    <div class="input-field">
+
+      <input id="nombre" name="nombre" type="text" class="validate" required>
+     <label for="nombre" center>Nombre</label>
+     
+</div>
+  </div>
+  <div class="row">
+    <div class="input-field">
+      <input id="descripcion" name="descripcion" type="text" class="validate" data-length="120" required>
+          <label for="descripcion" center>Descripción</label>
+</div>
+  </div>
+  
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Modificar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+
+</div>
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m3 l4"></div>
+      
+	</div>
+	
+  
+  <script> 
+     //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+   
+    $('#valor').change(function() {
+    
+    if($('#valor').val() == '1'){
+      $(".nom").show();
+    };
+    if($('#valor').val() == '2'){
+      $(".nom").hide();
+      document.getElementById("nombre").required = false;
+    };
+    });
+  
+   </script>
+{% endblock %}

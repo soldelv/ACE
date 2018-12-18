@@ -1,0 +1,177 @@
+{% extends "ejemplo.html" %}
+{% block content %}
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css"> 
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+
+
+
+     
+    <div class="col s12 m3 l2"></div>
+        <div class="card col s12 m6 l8 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Consorcio</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+				
+         <div class="log row">
+        <div class="input-field col s4">
+          <input id="razonsocial" name="razonsocial" type="text" class="validate" required >
+          <label for="razonsocial">Razon Social</label>
+       </div> 
+       <div class="input-field col s4">
+     <input id="direccion" name="direccion" type="text" class="validate" required>
+          <label for="direccion">Dirección</label>
+</div>    
+<div class="input-field col s4">
+   <input id="localidad" name="localidad" type="text" class="validate" required>
+          <label for="localidad" center>Localidad</label>
+</div>
+      </div>
+          <div class="log row">
+    <div class="input-field col s3">
+    <input id="cp" name="cp" type="text" class="validate" required data-length="8">
+          <label for="cp">Codigo Postal</label>
+</div> 
+<div class="input-field col s3">
+      <input id="cuit" name="cuit" type="number" class="validate" required>
+          <label for="cuit" center>CUIT</label>
+          </div>
+              <div class="input-field col s3">
+       <input id="inicioAdministracion" name="inicioAdministracion" type="date" class="validate" required>
+          <label for="inicioAdministracion" center>Inicio Administracion</label>
+          </div>  
+         
+        <div class="input-field col s3">
+       <input id="fechaContratoSocial" name="fechaContratoSocial" type="date" class="validate" required>
+          <label for="fechaContratoSocial" center>Fecha de Contrato Social</label>
+          </div>  
+       
+  </div>
+
+         <div class="log row">
+         <div class="input-field col s4">
+        <select name="responsable" required="required" class="validate">
+      <option value="" disabled selected>Administrador</option>
+      <option value="Ricardo">Ricardo</option>
+      <option value="Rocio">Rocio</option>
+      <option value="Sebastian">Sebastian</option>
+    </select>
+          </div>
+            <div class="input-field col s4">
+        <select name="instalaciones" required="required" class="validate">
+      <option value="" disabled selected>Instalaciones Fijas</option>
+      <option value="si">Si</option>
+      <option value="no">No</option>
+    </select>
+          </div>
+            <div class="input-field col s4">
+       <select name="responsabilidadIVA" required="required" class="validate">
+      <option value="" disabled selected>Responsabilidad IVA</option>
+      <option value="Responsable Inscripto">Responsable Inscripto</option>
+      <option value="Responsable No Inscripto">Responsable No Inscripto</option>
+      <option value="Monotributista">Monotributista</option>
+      <option value="Exento">Exento</option>
+      <option value="No Responsable">No Responsable</option>
+    <option value="Consumidor Final">Consumidor Final</option>
+    </select>
+          </div>
+        </div>
+        <div class="log row">
+          <div class="input-field col s4">
+    <input id="actividadEconomica" name="actividadEconomica" type="text" class="validate" required>
+    <label for="actividadEconomica" center>Actividad Economica</label>
+        </div>
+          <div class="input-field col s3">
+       <input id="suterh" name="suterh" type="text" class="validate" required>
+          <label for="suterh" center>Suterh</label>
+          </div>
+
+           <div class="input-field col s3">
+       <input id="clave" name="clave" type="text" class="validate" required>
+          <label for="clave" center>Clave Suterh</label>
+          </div>
+           <div class="input-field col s2">
+       <input id="agencia" name="agencia" type="number" class="validate" required data-length="2">
+          <label for="agencia" center>Agencia</label>
+          </div>
+          </div>
+           <div class="log row">
+        <div class="input-field col s3">
+       <input id="categoria" name="categoria" type="text" class="validate" required>
+          <label for="categoria" center>Categoria</label>
+          </div>
+      <div class="input-field col s3">
+      <input id="cc" name="cc" type="number" class="validate" min="0" required>
+          <label for="cc" center>Cantidad de Cocheras</label>
+          </div> 
+           <div class="input-field col s3">
+      <input id="unidadfuncional" name="unidadfuncional" type="number" class="validate"  min="1" required>
+          <label for="unidadfuncional" center>Unidades Funcionales</label>
+          </div>
+
+          <div class="input-field col s3">
+       <input id="cantidadAsensores" name="cantidadAsensores" type="number" class="validate" min="0" required>
+          <label for="cantidadAsensores" center>Cantidad Ascensores</label>  </div>
+          <div class="input-field  col s3">
+          <input id="cantidadCalderas" name="cantidadCalderas" type="number" class="validate" min="0" required>
+          <label for="cantidadCalderas" center>Cantidad Calderas</label>
+        
+        </div>
+         <div class="input-field  col s3">
+          <input id="termotanque" name="termotanque" type="number" class="validate" min="0" required>
+          <label for="termotanque" center>Termotanques</label>
+        
+        </div>
+        </div>
+        
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m3 l2"></div>
+      
+	</div>
+	
+</div>
+        <script>
+
+  //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});        
+         
+   $(document).ready(function(){
+    $('.datepicker').pickadate({
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+    selectMonths: true,
+    selectYears: 100, // Puedes cambiarlo para mostrar más o menos años
+    today: 'Hoy',
+    clear: 'Limpiar',
+    close: 'Ok',
+    closeOnSelect: true,
+    labelMonthNext: 'Siguiente mes',
+    labelMonthPrev: 'Mes anterior',
+    labelMonthSelect: 'Selecciona un mes',
+    labelYearSelect: 'Selecciona un año',
+    format: 'yyyy-mm-dd',
+   onClose: function() {
+        valid();
+    }
+     });
+  });
+
+
+        </script>
+ {% endblock %}

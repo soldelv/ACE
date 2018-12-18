@@ -1,0 +1,316 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+	 <div class="row"> 
+		
+     
+    <div class="col s12 m2 l1"></div>
+        <div class="card col s12 m8 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Todos los empleados</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+          <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a class="active"href="#test-swipe-1">Datos Principales</a></li>
+    <li class="tab col s3"><a  href="#test-swipe-2">Datos Secundarios </a></li>
+    <li class="tab col s3"><a href="#test-swipe-3">Horarios</a></li>
+  </ul>
+  
+  <!-- #-------------------------------ES PARA MOSTRAR TODOS LOS EMPLEADOS -->
+  
+  
+  <div id="test-swipe-1" class=""> 
+   <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+		  
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>CUIL</th>
+              <th>Email</th>
+              <th>Telefono Fijo</th>
+              <th>Celular</th>
+			  <th>Trabaja en</th>
+			  <th>Nro Consorcio</th>
+			  <th>Modificar</th>
+			  
+
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in listaempleado %}
+          <tr>
+            <td>{{dato.nombre}}</td>    
+			<td>{{dato.apellido}}</td>
+            <td>{{dato.cuil}}</td>
+            <td>{{dato.email}}</td>
+			<td>{{dato.telFijo}}</td>
+            <td>{{dato.celular}}</td>
+			
+			{% if dato.admin_id == 1 %} 
+				<td> ARyS </td>
+				<td> --- </td>
+				{% else %}
+					{% for dato2 in listaconsorcios %}
+						{% if dato.consorcio_id == dato2.id %} 
+							<td>{{dato2.direccion}} </td>
+						{% endif %}
+					{% endfor %}
+				<td>{{dato.consorcio_id}} </td>
+			{% endif %}		
+				<td><a class="btn" href="http://127.0.0.1:8000/AdminConsorcios/modificarEmpleado/{{dato.id}}/"><i class="material-icons">create</i></a></td>
+			
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+	
+	
+  <div id="test-swipe-2" class="">
+   <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th>Nacionalidad</th>
+              <th>Direccion</th>
+              <th>CP</th>
+			  <th>Localidad</th>
+				<th>Estado Civil</th>
+				<th>Estudios</th>
+				<th>Nacimiento</th>
+				
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in listaempleado %}
+          <tr>
+            <td>{{dato.nombre}}</td>    
+			<td>{{dato.apellido}}</td>
+            <td>{{dato.dni}}</td>
+            <td>{{dato.nacionalidad}}</td>
+			<td>{{dato.direccion}}</td>
+            <td>{{dato.cp}}</td>
+			<td>{{dato.localidad}}</td>
+			<td>{{dato.estadoCivil}}</td>
+            <td>{{dato.estudios}}</td>
+			<td>{{dato.fechaNacimiento|date:'d-m-Y'}}</td>
+            
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+  </div></div>
+  
+  <div id="test-swipe-3" class="">
+    <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a href="#test-swipe-4">Semanal</a></li>
+    <li class="tab col s3"><a href="#test-swipe-5">Sabado</a></li>
+    <li class="tab col s3"><a href="#test-swipe-6">Domingo</a></li>
+    <li class="tab col s3"><a href="#test-swipe-8">Feriado</a></li>
+  </ul>
+  
+  <div id="test-swipe-4" class="">
+   <div class="row"> 
+   <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>CUIL</th>
+              <th>Horario Semana Inicio</th>
+              <th>Horario Semana Fin</th>
+              <th>Horario Adicional Semana Inicio</th>
+              <th>Horario Adicional Semana Fin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in listaempleado %}
+          <tr>
+            <td>{{dato.cuil}}</td>    
+			{% if dato.horarioSemanalInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSemanalInicio}} </td>
+			{% endif %}
+			{% if dato.horarioSemanalFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSemanalFin}} </td>
+			{% endif %}
+			{% if dato.horarioSemanalAdicionalInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSemanalAdicionalInicio}} </td>
+			{% endif %}
+			{% if dato.horarioSemanalAdicionalFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSemanalAdicionalFin}} </td>
+			{% endif %}
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table></div></div>
+	  
+  <div id="test-swipe-5" class="">
+   <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>CUIL</th>
+              <th>Horario Sabado Inicio</th>
+              <th>Horario Sabado Fin</th>
+              <th>Horario Adicional Sabado Inicio</th>
+              <th>Horario Adicional Sabado Fin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in listaempleado %}
+          <tr>
+		  <td>{{dato.cuil}}</td>    
+		  {% if dato.horarioSabadoInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSabadoInicio}} </td>
+			{% endif %}
+			
+			{% if dato.horarioSabadoFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSabadoFin}} </td>
+			{% endif %}
+			
+			{% if dato.horarioSabadoAdicionalInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSabadoAdicionalInicio}} </td>
+			{% endif %}
+			
+			{% if dato.horarioSabadoAdicionalFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioSabadoAdicionalFin}} </td>
+			{% endif %}
+
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table></div></div>
+	  
+  <div id="test-swipe-6" class="">
+   <div class="row"> 
+  <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>CUIL</th>
+              <th>Horario Domingo Inicio</th>
+              <th>Horario Domingo Fin</th>
+              <th>Horario Adicional Domingo Inicio</th>
+              <th>Horario Adicional Domingo Fin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in listaempleado %}
+          <tr>
+
+            <td>{{dato.cuil}}</td>    
+			{% if dato.horarioDomingoInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioDomingoInicio}} </td>
+			{% endif %}
+			
+			{% if dato.horarioDomingoFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioDomingoFin}} </td>
+			{% endif %}
+			
+			{% if dato.horarioDomingoAdicionalInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioDomingoAdicionalInicio}} </td>
+			{% endif %}
+			
+			{% if dato.horarioDomingoAdicionalFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioDomingoAdicionalFin}} </td>
+			{% endif %}
+
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table></div></div>
+
+  <div id="test-swipe-8" class="">
+   <div class="row"> 
+  <table class="responsive-table">
+        <thead>
+          <tr>
+
+              <th>CUIL</th>
+              <th>Horario Feriado Inicio</th>
+              <th>Horario Feriado Fin</th>
+              <th>Horario Adicional Feriado Inicio</th>
+              <th>Horario Adicional Feriado Fin</th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in listaempleado %}
+          <tr>
+
+		    <td>{{dato.cuil}}</td>    
+			{% if dato.horarioFeriadoInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioFeriadoInicio}} </td>
+			{% endif %}
+			
+			{% if dato.horarioFeriadoFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioFeriadoFin}} </td>
+			{% endif %}
+			
+			{% if dato.horarioFeriadoAdicionalInicio == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioFeriadoAdicionalInicio}} </td>
+			{% endif %}
+			
+			{% if dato.horarioFeriadoAdicionalFin == None %} 
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.horarioFeriadoAdicionalFin}} </td>
+			{% endif %}
+
+          </tr>
+         {% endfor %}
+        </tbody>
+		
+      </table></div></div>
+  
+</div>
+         
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l1"></div>
+    </div>  
+	</div>
+	
+ {% endblock %}

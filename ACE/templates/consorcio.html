@@ -1,0 +1,118 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l3"></div>
+        <div class="card col s12 m8 l6 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Consorcios</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+        
+            			<table class="responsive-table hide-on-large-only hide-on-med-only ">
+        <thead>
+          <tr>
+              <th>Razon Social</th>
+              <th>Direccion</th>
+        <th>Codigo Postal</th>
+           <th>Localidad</th>
+        <th>CUIT</th>
+        
+        <th>Actividad Economica</th>
+        <th>Administrador</th>
+        <th>Fecha de Contrato Social</th>
+        <th>Inicio Administracion</th>
+        <th>Suterh</th>
+        <th>Clave Suterh</th>
+        <th>Responsabilidad IVA</th>
+        <th>Cantidad de Cocheras</th>
+        <th>Unidades Funcionales</th>
+        <th>Cantidad Asensores</th>
+        <th>Cantidad Calderas</th>
+        
+        <th>Cantidad de Termotanques</th>
+        <th>Instalaciones Fijas</th>
+        <th>Agencia de AFIP</th>
+        <th>Categoria</th>
+          </tr>
+     </thead>
+
+        <tbody>
+         {% for dato in consorcios %}
+          <tr>
+            <td>{{dato.razonSocial}}</td>
+            <td>{{dato.direccion}}</td>
+      <td>{{dato.cp}}</td>
+            <td>{{dato.localidad}}</td>
+      <td>{{dato.cuit}}</td>
+     
+      <td>{{dato.actividadEconomica}}</td>
+      <td>{{dato.administrador}}</td> 
+      <td>{{dato.fechaContratoSocial|date:'d-m-Y'}}</td>
+      <td>{{dato.inicioAdministracion|date:'d-m-Y'}}</td>
+      <td>{{dato.suterh}}</td>
+      <td>{{dato.clavesuterh}}</td>
+      <td>{{dato.responsabilidadIVA}}</td> 
+      <td>{{dato.cantidadCocheras}}</td>
+      <td>{{dato.cantidadUnidadesFuncionales}}</td>
+      <td>{{dato.cantidadAsensores}}</td>
+      <td>{{dato.cantidadCalderas}}</td>
+     
+      <td>{{dato.cantidadTermotanques}}</td>
+      {% if dato.instalacionesFijas == True %} 
+				<td> Si </td>
+				{% else %}
+				<td> No </td>
+			{% endif %}
+      <td>{{dato.agencia}}</td>
+      <td>{{dato.categoria}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table> 
+                  <table class="hide-on-small-only bordered">
+{% for dato in consorcios %}
+          
+              <tr><th>Razon Social</th><td>{{dato.razonSocial}}</td> </tr>
+             <tr> <th>Direccion</th><td>{{dato.direccion}}</td></tr>
+        <tr><th>Codigo Postal</th><td>{{dato.cp}}</td></tr>
+            <tr>  <th>Localidad</th><td>{{dato.localidad}}</td></tr>
+       <tr> <th>CUIT</th><td>{{dato.cuit}}</td></tr>
+       
+      <tr>  <th>Actividad Economica</th><td>{{dato.actividadEconomica}}</td></tr>
+       <tr> <th>Administrador</th><td>{{dato.administrador}}</td></tr>
+       <tr>  <th>Inicio Consorcio</th><td>{{dato.fechaContratoSocial|date:'d-m-Y'}}</td></tr>
+       <tr> <th>Inicio Administracion</th><td>{{dato.inicioAdministracion|date:'d-m-Y'}}</td></tr>
+       <tr> <th>Suterh</th><td>{{dato.suterh}}</td></tr>
+       <tr> <th>Clave Suterh</th><td>{{dato.clavesuterh}}</td></tr>
+       <tr> <th>Responsabilidad IVA</th><td>{{dato.responsabilidadIVA}}</td></tr>
+       <tr> <th>Cantidad de Cocheras</th><td>{{dato.cantidadCocheras}}</td></tr>
+       <tr> <th>Unidades Funcionales</th><td>{{dato.cantidadUnidadesFuncionales}}</td></tr>
+       <tr> <th>Cantidad Asensores</th><td>{{dato.cantidadAsensores}}</td></tr>
+       <tr> <th>Cantidad Calderas</th><td>{{dato.cantidadCalderas}}</td></tr>
+      <tr><th>Cantidad de Termotanques</th><td>{{dato.cantidadTermotanques}}</td></tr>  
+      <tr><th>Instalaciones Fijas</th>{% if dato.instalacionesFijas == True %} 
+				<td> Si </td>
+				{% else %}
+				<td> No </td>
+			{% endif %}
+      <tr><th>Agencia de AFIP</th><td>{{dato.agencia}}</td></tr>  
+       <tr><th>Categoria</th><td>{{dato.categoria}}</td></tr>   
+  
+         {% endfor %}
+      
+     
+      </table> 
+
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l3"></div>
+      
+	</div>
+	
+ {% endblock %}

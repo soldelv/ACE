@@ -1,0 +1,110 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+	<div class="row">	
+		
+     
+    <div class="col s12 m2 l1"></div>
+        <div class="card col s12 m8 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Reclamos</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+          <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a class="active" href="#test-swipe-1">Datos del Reclamo</a></li>
+    <li class="tab col s3"><a href="#test-swipe-2">Descripcion </a></li>
+  </ul>
+  
+
+  
+  
+  <div id="test-swipe-1" class=""> 
+  <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+		  
+              <th>Numero</th>
+              <th>Fecha</th>
+			  <th>Consorcio</th>
+			  <th>Ubicacion</th>
+			  <th>UF</th>
+			   <th>Dpto</th>
+				<th>Estado</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+      {% for dato in reclamos %}
+          <tr>
+            <td>{{dato.id}}</td>
+            <td>{{dato.fecha|date:'d-m-Y'}}</td>
+			{% for dato2 in listaconsorcios %}
+					{% if dato.consorcio_id == dato2.id %} 
+						<td>{{dato2.direccion}} </td>
+					{% endif %}
+			{% endfor %}
+			{% if dato.ubicacion == "Comun" %} 
+				<td>{{dato.ubicacion}}</td>
+				<td> --- </td>
+				<td> --- </td>
+				{% else %}
+				<td>{{dato.ubicacion}}</td>
+				{% for dato3 in listauf %}
+					{% if dato.unidadFuncional_id == dato3.id %} 
+						<td>{{dato3.unidadFuncional}} </td>
+						<td>{{dato3.pisoDepartamento}} </td>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<td>{{dato.estado}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+	
+	
+  <div id="test-swipe-2" class="">
+  <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Numero</th>
+			  <th>Descripcion</th>
+				
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for dato in reclamos %}
+          <tr>
+            <td>{{dato.id}}</td>
+			<td>{{dato.descripcion}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+ </div></div>
+ 
+
+        </tbody>
+		
+      </table></div>
+	  </div>
+   
+</div>
+          
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l1"></div>
+     </div> 
+	</div>
+	
+ {% endblock %}

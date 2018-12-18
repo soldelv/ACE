@@ -1,0 +1,313 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+
+
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l1"></div>
+        <div class="card col s12 m8 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Modificar Consorcio</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="POST" class="form">{% csrf_token %}
+								
+         <div class="log row">
+        <div class="input-field col s4">
+          <input id="razonsocial" name="razonsocial" type="text" class="validate" value="{{razonsocial}}">
+          <label for="razonsocial">Razon Social</label>
+       </div> 
+       <div class="input-field col s4">
+     <input id="direccion" name="direccion" type="text" class="validate" value="{{direccion}}">
+          <label for="direccion">Dirección</label>
+</div>    
+<div class="input-field col s4">
+   <input id="localidad" name="localidad" type="text" class="validate" value="{{localidad}}">
+          <label for="localidad" center>Localidad</label>
+</div>
+      </div>
+          <div class="log row">
+    <div class="input-field col s3">
+    <input id="cp" name="cp" type="text" class="validate" data-length="8" value="{{cp}}">
+          <label for="cp">Codigo Postal</label>
+</div> 
+<div class="input-field col s3">
+      <input id="cuit" name="cuit" type="number" class="validate" value="{{cuit}}">
+          <label for="cuit" center>CUIT</label>
+          </div>
+              <div class="input-field col s3">
+       <input id="inicioAdministracion" name="inicioAdministracion" type="text" class="datepicker validate" value="{{inicioAdministracion|date:'Y-m-d'}}">
+          <label for="inicioAdministracion" center>Inicio Administracion</label>
+          </div>  
+         
+        <div class="input-field col s3">
+       <input id="fechaContratoSocial" name="fechaContratoSocial" type="text" class="datepicker validate" value="{{fechaContratoSocial|date:'Y-m-d'}}">
+          <label for="fechaContratoSocial" center>Fecha de Contrato Social</label>
+          </div>  
+       
+  </div>
+
+         <div class="log row">
+         <div class="input-field col s4">
+        <select name="responsable" class="validate">
+      <option value="" disabled selected>Administrador</option>
+	  {% if responsable != "Ricardo" %}
+      <option value="Ricardo">Ricardo</option>
+	  {% endif %}
+	  {% if responsable != "Rocio" %}
+      <option value="Rocio">Rocio</option>
+	  {% endif %}
+	  {% if responsable != "Sebastian" %}
+      <option value="Sebastian">Sebastian</option>
+	  {% endif %}
+      <option selected="selected" value="{{responsable}}">{{responsable}}</option>
+    </select>
+          </div>
+            <div class="input-field col s4">
+        <select name="instalaciones" class="validate">
+      <option value="" disabled selected>Instalaciones Fijas</option>
+	  {% if instalaciones != True %}
+      <option value="si">Si</option>
+	  <option selected="selected" value="{{false}}">No</option>
+	  {% endif %}
+	  {% if instalaciones != False %}
+      <option value="no">No</option> 
+	  <option selected="selected" value="{{true}}">Si</option>
+	  {% endif %}
+	 
+    </select>
+          </div>
+            <div class="input-field col s4">
+       <select name="responsabilidadIVA" class="validate">
+      <option value="" disabled selected>Responsabilidad IVA</option>
+	  {% if responsabilidadIVA != "Responsable Inscripto" %}
+      <option value="Responsable Inscripto">Responsable Inscripto</option>
+	  {% endif %}
+	  {% if responsabilidadIVA != "Responsable No Inscripto" %}
+      <option value="Responsable No Inscripto">Responsable No Inscripto</option>
+	  {% endif %}
+	  {% if responsabilidadIVA != "Monotributista" %}
+      <option value="Monotributista">Monotributista</option>
+	  {% endif %}
+	  {% if responsabilidadIVA != "Exento" %}
+      <option value="Exento">Exento</option>
+	  {% endif %}
+	  {% if responsabilidadIVA != "No Responsable" %}
+      <option value="No Responsable">No Responsable</option>
+	  {% endif %}
+	  {% if responsabilidadIVA != "Consumidor Final" %}
+    <option value="Consumidor Final">Consumidor Final</option>
+	{% endif %}
+    <option selected="selected" value="{{responsabilidadIVA}}">{{responsabilidadIVA}}</option>
+    </select>
+          </div>
+        </div>
+        <div class="log row">
+          <div class="input-field col s4">
+    <input id="actividadEconomica" name="actividadEconomica" type="text" class="validate" value="{{actividadEconomica}}">
+    <label for="actividadEconomica" center>Actividad Economica</label>
+        </div>
+          <div class="input-field col s3">
+       <input id="suterh" name="suterh" type="text" class="validate" value="{{suterh}}">
+          <label for="suterh" center>Suterh</label>
+          </div>
+
+           <div class="input-field col s3">
+       <input id="clave" name="clave" type="text" class="validate" value="{{clave}}">
+          <label for="clave" center>Clave Suterh</label>
+          </div>
+           <div class="input-field col s2">
+       <input id="agencia" name="agencia" type="number" class="validate" data-length="2" value="{{agencia}}">
+          <label for="agencia" center>Agencia</label>
+          </div>
+          </div>
+           <div class="log row">
+        <div class="input-field col s3">
+       <input id="categoria" name="categoria" type="text" class="validate" value="{{categoria}}">
+          <label for="categoria" center>Categoria</label>
+          </div>
+      <div class="input-field col s3">
+      <input id="cc" name="cc" type="number" class="validate" min="0" value="{{cc}}">
+          <label for="cc" center>Cantidad de Cocheras</label>
+          </div> 
+           <div class="input-field col s3">
+      <input id="unidadfuncional" name="unidadfuncional" type="number" class="validate"  min="1" value="{{unidadfuncional}}">
+          <label for="unidadfuncional" center>Unidades Funcionales</label>
+          </div>
+
+          <div class="input-field col s3">
+       <input id="cantidadAsensores" name="cantidadAsensores" type="number" class="validate" min="0" value="{{cantidadAsensores}}">
+          <label for="cantidadAsensores" center>Cantidad Asensores</label>  </div>
+          <div class="input-field  col s3">
+          <input id="cantidadCalderas" name="cantidadCalderas" type="number" class="validate" min="0" value="{{cantidadCalderas}}">
+          <label for="cantidadCalderas" center>Cantidad Calderas</label>
+        
+        </div>
+         <div class="input-field  col s3">
+          <input id="termotanque" name="termotanque" type="number" class="validate" min="0" value="{{termotanque}}">
+          <label for="termotanque" center>Termotanques</label>
+        
+        </div>
+             <div class="input-field col s3" style=" display:none">
+    <input id="consorcio" name="consorcio" type="text" class="validate" value="{{id}}">
+     <label for="consorcio" center>Numero de Consorcio</label>
+    </div>
+        </div>
+		<input type="hidden" name="id" id="id">
+      
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action" value="si">Modificar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l1"></div>
+      
+	</div>
+
+
+      <script> 
+	
+  
+       $(document).ready(function(){
+    $('input[type="checkbox"]').click(function(){
+        var inputValue = $(this).attr("value");
+        $("." + inputValue).toggle();
+    });
+});
+
+
+//datos no ingresados
+ $('#d').change(function() {  
+    if($('#d').val() != 'uno'){
+      document.getElementById("direccion").required = false;
+    };
+    });
+ $('#l').change(function() {  
+    if($('#l').val() != 'dos'){
+      document.getElementById("localidad").required = false;
+    };
+    });
+ $('#c').change(function() {  
+    if($('#c').val() != 'tres'){
+      document.getElementById("cp").required = false;
+    };
+    });
+ $('#cu').change(function() {  
+    if($('#cu').val() != 'cuatro'){
+      document.getElementById("cuit").required = false;
+    };
+    });
+ $('#ia').change(function() {  
+    if($('#ia').val() != 'cinco'){
+      document.getElementById("inicioAdministracion").required = false;
+    };
+    });
+ $('#iac').change(function() {  
+    if($('#iac').val() != 'seis'){
+      document.getElementById("inicioActividadConsorcio").required = false;
+    };
+    });	
+	 $('#aec').change(function() {  
+    if($('#aec').val() != 'siete'){
+      document.getElementById("actividadEconomica").required = false;
+    };
+    });
+ $('#r').change(function() {  
+    if($('#r').val() != 'ocho'){
+      document.getElementById("responsable").required = false;
+    };
+    });
+ $('#ri').change(function() {  
+    if($('#ri').val() != 'nueve'){
+      document.getElementById("responsabilidadIVA").required = false;
+    };
+    });	
+	 $('#su').change(function() {  
+    if($('#su').val() != 'diez'){
+      document.getElementById("suterh").required = false;
+    };
+    });
+ $('#cco').change(function() {  
+    if($('#cco').val() != 'once'){
+      document.getElementById("cc").required = false;
+    };
+    });	
+	 $('#uf').change(function() {  
+    if($('#uf').val() != 'doce'){
+      document.getElementById("unidadfuncional").required = false;
+    };
+    });
+ $('#ca').change(function() {  
+    if($('#ca').val() != 'trece'){
+      document.getElementById("cantidadAsensores").required = false;
+    };
+    });
+ $('#cca').change(function() {  
+    if($('#cca').val() != 'catorce'){
+      document.getElementById("cantidadCalderas").required = false;
+    };
+    });	
+	
+	 $('#cambio').change(function() {
+    
+    if($('#cambio').val() == '1'){
+      $(".modifica").show();
+    };
+    if($('#cambio').val() == '2'){
+      $(".modifica").hide();
+      document.getElementById("razonsocial").required = false;
+    };
+    });
+   	  //valido select nulo
+	  $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+	  
+	  
+	  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+   
+          //Calendario
+
+ $(document).ready(function(){
+    $('.datepicker').pickadate({
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+    selectMonths: true,
+    selectYears: 100, // Puedes cambiarlo para mostrar más o menos años
+    today: 'Hoy',
+    clear: 'Limpiar',
+    close: 'Ok',
+    closeOnSelect: true,
+    labelMonthNext: 'Siguiente mes',
+    labelMonthPrev: 'Mes anterior',
+    labelMonthSelect: 'Selecciona un mes',
+    labelYearSelect: 'Selecciona un año',
+    format: 'yyyy-mm-dd',
+   onClose: function() {
+        valid();
+    }
+     });
+  });
+
+
+        </script>
+  
+{% endblock %}

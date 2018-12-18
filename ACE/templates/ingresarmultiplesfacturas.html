@@ -1,0 +1,104 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url(img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m1 l1"></div>
+        <div class="card col s12 m10 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Factura</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+      
+          <div class="input-field col s2">
+          <input id="nro" name="nro" type="text" class="validate" required>
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+      
+   
+    <div class="input-field col s1">
+      <select name="tipofactura">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option id="tipo1" value="1">Abono</option>
+      <option id="tipo2" value="2">Gasto</option>
+      <option id="tipo3" value="3">Servicio</option>
+    </select>
+  
+
+  </div>
+
+    <div class="input-field col s1">
+    <select name="servicio">
+      <option value="" disabled selected>Servicio</option>
+      <option value="1">Agua</option>
+      <option value="2">Gas</option>
+      <option value="3">Luz</option>
+    <option value="4">Limpieza</option>
+    <option value="5">Otros</option>
+    </select>
+
+  </div> 
+
+
+          <div class="input-field col s2">
+          <input id="vencimiento" name="vencimiento" type="date" class="datepicker validate" required>
+          <label for="vencimiento" center>Fecha de Vencimiento</label>
+        </div>
+  
+       
+    <div class="input-field col s1">
+      <select name="tipo">
+      <option value="" disabled selected>Tipo</option>
+      <option value="1">Ingreso</option>
+      <option value="2">Egreso</option>
+    </select>
+  
+ 
+  </div>
+ 
+    <div class="input-field col s1">
+      <select name="caja[]">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+
+  </div>
+      
+          
+    <div class="input-field col s2">
+    <select name="consorcio[]">
+      <option value="" disabled selected>Elige Consorcio</option>
+      <option value="1">Alcorta</option>
+      <option value="2">Alvear</option>
+      <option value="3">Anchorena</option>
+    <option value="4">Arenales</option>
+    <option value="5">Artigas</option>
+    </select>
+
+  </div>
+    
+          <div class="input-field col s1">
+          <input id="monto" name="monto[]" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+   
+<div class="row"></div>
+      <div class="boton center">
+         <div class="botn row">
+          <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons" type="submit">add</i></a>
+  
+</div>
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m1 l1"></div>
+      
+	</div>
+	
+ {% endblock %}

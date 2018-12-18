@@ -1,0 +1,98 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">      
+   
+            <div class="col s12 m3 l3"></div>
+        <div class="card col s12 m6 l6 z-depth-5" style="padding-right: 0px;
+  padding-left: 0px;">
+          <div class="card-content z-depth-5">
+            <span class="card-title" style="color: red;">El consorcio ingresado no existe</span>
+			<span style="color: red;">Por favor, ingrese un consorcio válido</span> 
+          </div>
+                <div class="card-action z-depth-5">
+                  <form method="post" class="form">{% csrf_token %}
+ 
+       <div class="lo row">
+        <div class="input-field col s4">
+          <input id="consorcio" name="consorcio" type="text" class="validate" required>
+          <label for="consorcio" center>Numero de Consorcio</label>
+        </div>
+
+    <div class="input-field col s4">
+      <select name="tipo" id="tipo" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  
+      <div class="bancaria" id="bancaria" style="display: none;">
+          <div class="input-field col s4">
+          <input id="banco" name="banco" type="text" class="validate" required>
+          <label for="banco" center>Banco</label>
+        </div>
+      
+       
+          <div class="input-field col s4">
+          <input id="cuenta" name="cuenta" type="number" class="validate" required>
+          <label for="cuenta" center>Numero de Cuenta</label>
+        </div>
+     </div>
+     
+          <div class="input-field col s4">
+          <input id="monto" name="monto" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+     
+         <div class="input-field col s4">
+          <select name="moneda" id="moneda" required="required" class="validate">
+      <option value="" disabled selected>Moneda</option>
+      <option selected="selected" value="Pesos">Pesos</option>
+      <option value="Dolares">Dolares</option>
+    </select>
+      </div> 
+    </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Apertura</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  </div>
+</form>
+                </div><div class="borde"></div>
+            </div> 
+            <div class="col s12 m3 l3"></div>
+      
+	</div>
+	<script>
+   $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'}); 
+  </script>
+  <script>
+    
+   $('#textarea1').val(' ');
+  M.textareaAutoResize($('#textarea1'));
+  </script>
+  <script>
+    $('#tipo').change(function() {
+    
+    if($('#tipo').val() == '1'){
+      $(".bancaria").show();
+    };
+    if($('#tipo').val() == '2'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipo').val() == '3'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+   
+  </script>
+  {% endblock %}

@@ -1,0 +1,965 @@
+{% extends "ejemplo.html" %}
+{% block content %}
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/muchasFacturas.css"> 
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+
+
+
+     
+    <div class="col s12 m2 l2"></div>
+        <div class="card col s12 m6 l8 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Facturas</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			
+					          <div class="log row"> <div class="input-field col s4"></div>
+							  <div class="input-field col s4">
+       <select name="valores" id="valores" required="required" class="validate">
+      <option value="" disabled selected>Cantidad de Facturas</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+	  <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+          </div> <div class="input-field col s4"></div></div>
+		           <div class="log row">
+<div class="nro" id="nro" style="display: none;">				   
+      <ul class = "collapsible" data-collapsible = "expandable">
+
+         <li>
+            <div class = "collapsible-header ">
+               <i class = "material-icons">attach_money</i>Factura 1</div>
+            <div class = "collapsible-body">
+			<form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field col s4">
+          <input id="nro" name="nro" type="text" class="validate" required>
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+    
+    <div class="input-field col s4">
+      <select name="tipofactura" id="tipofactura" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+
+<div class="ab" id="ab" style="display: none;">
+    <div class="input-field col s4">
+       {% if abonos %} 
+       <select name="abono" id="abono" required="required" class="validate">
+      <option value="" disabled selected>Abono</option> 
+      {% for abono in abonos %} 
+      <option value="{{abono.nombre}}">{{abono.nombre}}</option>
+      {% endfor %}
+    </select>
+    {% else %}
+      <input id="abono" name="abono" class="validate">
+      <label for="abono">Abono</label>
+	{% endif %} 
+</div>
+  </div>
+  <div class="ga" id="ga" style="display: none;">
+    <div class="input-field col s4">
+	{% if gastos %}       
+  <select name="gasto" id="gasto" required="required" class="validate">
+      <option value="" disabled selected>Gasto</option> 
+      {% for gasto in gastos %} 
+      <option value="{{gasto.nombre}}">{{gasto.nombre}}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+      <input id="gasto" name="gasto" class="validate">
+      <label for="gasto">Gasto</label>
+  {% endif %}  
+</div>
+  </div>
+  <div class="se" id="se" style="display: none;">
+    <div class="input-field col s4">
+{% if servicios %} 
+  <select name="servicio" id="servicio" required="required" class="validate">
+      <option value="" disabled selected>Servicio</option> 
+      {% for servicio in servicios %} 
+      <option value="{{servicio.nombre}}">{{servicio.nombre}}</option>
+      {% endfor %}
+    </select>  
+     {% else %}
+      <input id="servicio" name="servicio" class="validate">
+      <label for="servicio">Servicio</label>
+	 {% endif %}  
+   </div>
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field col s4">
+          <input id="vencimiento" name="vencimiento" type="date" class="validate" required>
+          <label for="vencimiento" center>Fecha de Vencimiento</label>
+        </div>
+    
+          <div class="input-field col s4">
+          <input id="pago" name="pago" type="date" class="validate" required>
+          <label for="pago" center>Fecha de Pago</label>
+        </div>
+   
+    <div class="input-field col s4">
+      <select name="tipo" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field col s3">
+      <select name="caja" id="caja" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+
+      
+<div class="cons " id="cons" style="display: none;">
+    <div class="input-field col s3">
+
+        <input name="consorcio" id="consorcio" class="validate" required>
+        <label for="consorcio">Consorcio</label>
+          
+</div>
+  </div>
+
+    <div class="input-field col s3">
+      <select name="tipoCaja" id="tipoCaja" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  
+          <div class="input-field col s3">
+          <input id="monto" name="monto" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+
+</div>
+</form>
+			</div>
+         </li>
+         </ul></div>
+		   <div class="nro2" id="nro2" style="display: none;">
+		    <ul class="collapsible expandable">
+         <li>
+            <div class = "collapsible-header" >
+               <i class = "material-icons">attach_money</i>Factura 2</div>
+            <div class = "collapsible-body"><form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field col s4">
+          <input id="num2" name="num2" type="text" class="validate" required>
+          <label for="num2" center>Nro de Factura</label>
+        </div>
+    
+    <div class="input-field col s4">
+      <select name="tipofactura2" id="tipofactura2" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+
+<div class="ab2" id="ab2" style="display: none;">
+    <div class="input-field col s4">
+       {% if abonos %} 
+       <select name="abono2" id="abono2" required="required" class="validate">
+      <option value="" disabled selected>Abono</option> 
+      {% for abono2 in abonos %} 
+      <option value="{{abono2.nombre}}">{{abono2.nombre}}</option>
+      {% endfor %}
+    </select>
+    {% else %}
+      <input id="abono2" name="abono2" class="validate">
+      <label for="abono2">Abono</label>
+	{% endif %}
+</div>
+  </div>
+  <div class="ga2" id="ga2" style="display: none;">
+    <div class="input-field col s4">
+  {% if gastos %}       
+  <select name="gasto2" id="gasto2" required="required" class="validate">
+      <option value="" disabled selected>Gasto</option> 
+      {% for gasto2 in gastos %} 
+      <option value="{{gasto2.nombre}}">{{gasto2.nombre}}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+      <input id="gasto2" name="gasto2" class="validate">
+      <label for="gasto2">Gasto</label>
+   {% endif %} 
+</div>
+  </div>
+  <div class="se2" id="se2" style="display: none;">
+    <div class="input-field col s4">
+{% if servicios %} 
+  <select name="servicio2" id="servicio2" required="required" class="validate">
+      <option value="" disabled selected>Servicio</option> 
+      {% for servicio2 in servicios %} 
+      <option value="{{servicio2.nombre}}">{{servicio2.nombre}}</option>
+      {% endfor %}
+    </select>  
+     {% else %}
+      <input id="servicio2" name="servicio2" class="validate">
+      <label for="servicio2">Servicio</label>
+	 {% endif %}
+   </div>
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field col s4">
+          <input id="vencimiento2" name="vencimiento2" type="date" class="validate" required>
+          <label for="vencimiento2" center>Fecha de Vencimiento</label>
+        </div>
+    
+          <div class="input-field col s4">
+          <input id="pago2" name="pago2" type="date" class="validate" required>
+          <label for="pago2" center>Fecha de Pago</label>
+        </div>
+   
+    <div class="input-field col s4">
+      <select name="tipo2" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field col s3">
+      <select name="caja2" id="caja2" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+
+      
+<div class="cons2 " id="cons2" style="display: none;">
+    <div class="input-field col s3">
+
+        <input name="consorcio2" id="consorcio2" class="validate" required>
+        <label for="consorcio2">Consorcio</label>
+          
+</div>
+  </div>
+
+    <div class="input-field col s3">
+      <select name="tipoCaja2" id="tipoCaja2" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  
+          <div class="input-field col s3">
+          <input id="monto2" name="monto2" type="number" class="validate" required>
+          <label for="monto2" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+
+</div>
+</form></div>
+         </li>
+		 </ul>
+		 </div>
+		 
+           <div class="nro3" id="nro3" style="display: none;">
+		   <ul class="collapsible expandable">
+         <li>
+            <div class = "collapsible-header">
+               <i class = "material-icons">attach_money</i>Factura 3</div>
+            <div class = "collapsible-body"><form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field col s4">
+          <input id="num3" name="num3" type="text" class="validate" required>
+          <label for="num3" center>Nro de Factura</label>
+        </div>
+    
+    <div class="input-field col s4">
+      <select name="tipofactura3" id="tipofactura3" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+
+<div class="ab3" id="ab3" style="display: none;">
+    <div class="input-field col s4">
+    {% if abonos %} 
+       <select name="abono3" id="abono3" required="required" class="validate">
+      <option value="" disabled selected>Abono</option> 
+      {% for abono3 in abonos %} 
+      <option value="{{abono3.nombre}}">{{abono3.nombre}}</option>
+      {% endfor %}
+    </select>
+    {% else %}   
+      <input id="abono3" name="abono3" class="validate">
+      <label for="abono3">Abono</label>
+	 {% endif %}
+</div>
+  </div>
+  <div class="ga3" id="ga3" style="display: none;">
+    <div class="input-field col s4">
+	   {% if gastos %}       
+  <select name="gasto3" id="gasto3" required="required" class="validate">
+      <option value="" disabled selected>Gasto</option> 
+      {% for gasto3 in gastos %} 
+      <option value="{{gasto3.nombre}}">{{gasto3.nombre}}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+      <input id="gasto3" name="gasto3" class="validate">
+      <label for="gasto3">Gasto</label>
+     {% endif %}
+</div>
+  </div>
+  <div class="se3" id="se3" style="display: none;">
+    <div class="input-field col s4">
+	{% if servicios %} 
+  <select name="servicio3" id="servicio3" required="required" class="validate">
+      <option value="" disabled selected>Servicio</option> 
+      {% for servicio3 in servicios %} 
+      <option value="{{servicio3.nombre}}">{{servicio3.nombre}}</option>
+      {% endfor %}
+    </select>  
+     {% else %}
+      <input id="servicio3" name="servicio3" class="validate">
+      <label for="servicio3">Servicio</label>
+	   {% endif %}
+   </div>
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field col s4">
+          <input id="vencimiento3" name="vencimiento3" type="date" class="validate" required>
+          <label for="vencimiento3" center>Fecha de Vencimiento</label>
+        </div>
+    
+          <div class="input-field col s4">
+          <input id="pago3" name="pago3" type="date" class="validate" required>
+          <label for="pago3" center>Fecha de Pago</label>
+        </div>
+   
+    <div class="input-field col s4">
+      <select name="tipo3" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field col s3">
+      <select name="caja3" id="caja3" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+
+      
+<div class="cons3 " id="cons3" style="display: none;">
+
+    <div class="input-field col s3">
+
+        <input name="consorcio3" id="consorcio3" class="validate" required>
+        <label for="consorcio3">Consorcio</label>
+          
+</div>
+  </div>
+
+    <div class="input-field col s3">
+      <select name="tipoCaja3" id="tipoCaja3" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  
+          <div class="input-field col s3">
+          <input id="monto3" name="monto3" type="number" class="validate" required>
+          <label for="monto3" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+
+</div>
+</form></div>
+         </li>
+		 </ul>
+		 </div>
+		   <div class="nro4" id="nro4" style="display: none;">
+		   <ul class="collapsible expandable">
+		 <li>
+            <div class = "collapsible-header">
+               <i class = "material-icons">attach_money</i>Factura 4</div>
+            <div class = "collapsible-body"><form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field col s4">
+          <input id="num4" name="num4" type="text" class="validate" required>
+          <label for="num4" center>Nro de Factura</label>
+        </div>
+    
+    <div class="input-field col s4">
+      <select name="tipofactura4" id="tipofactura4" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+
+<div class="ab4" id="ab4" style="display: none;">
+    <div class="input-field col s4">
+    {% if abonos %} 
+       <select name="abono4" id="abono4" required="required" class="validate">
+      <option value="" disabled selected>Abono</option> 
+      {% for abono4 in abonos %} 
+      <option value="{{abono4.nombre}}">{{abono4.nombre}}</option>
+      {% endfor %}
+    </select>
+    {% else %}   
+      <input id="abono4" name="abono4" class="validate">
+      <label for="abono4">Abono</label>
+	{% endif %} 
+</div>
+  </div>
+  <div class="ga4" id="ga4" style="display: none;">
+    <div class="input-field col s4">
+	{% if gastos %}       
+  <select name="gasto4" id="gasto4" required="required" class="validate">
+      <option value="" disabled selected>Gasto</option> 
+      {% for gasto4 in gastos %} 
+      <option value="{{gasto4.nombre}}">{{gasto4.nombre}}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+      <input id="gasto4" name="gasto4" class="validate">
+      <label for="gasto4">Gasto</label>
+    {% endif %} 
+</div>
+  </div>
+  <div class="se4" id="se4" style="display: none;">
+    <div class="input-field col s4">
+{% if servicios %} 
+  <select name="servicio4" id="servicio4" required="required" class="validate">
+      <option value="" disabled selected>Servicio</option> 
+      {% for servicio4 in servicios %} 
+      <option value="{{servicio4.nombre}}">{{servicio4.nombre}}</option>
+      {% endfor %}
+    </select>  
+     {% else %}
+      <input id="servicio4" name="servicio4" class="validate">
+      <label for="servicio4">Servicio</label>
+	{% endif %}   
+   </div>
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field col s4">
+          <input id="vencimiento4" name="vencimiento4" type="date" class="validate" required>
+          <label for="vencimiento4" center>Fecha de Vencimiento</label>
+        </div>
+    
+          <div class="input-field col s4">
+          <input id="pago4" name="pago4" type="date" class="validate" required>
+          <label for="pago4" center>Fecha de Pago</label>
+        </div>
+   
+    <div class="input-field col s4">
+      <select name="tipo4" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field col s3">
+      <select name="caja4" id="caja4" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+
+      
+<div class="cons4 " id="cons4" style="display: none;">
+    <div class="input-field col s3">
+
+        <input name="consorcio4" id="consorcio4" class="validate" required>
+        <label for="consorcio4">Consorcio</label>
+          
+</div>
+  </div>
+
+    <div class="input-field col s3">
+      <select name="tipoCaja4" id="tipoCaja4" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  
+          <div class="input-field col s3">
+          <input id="monto4" name="monto4" type="number" class="validate" required>
+          <label for="monto4" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+
+</div>
+</form></div>
+         </li>
+		 </ul>
+		 </div>
+		   <div class="nro5" id="nro5" style="display: none;">
+		    <ul class="collapsible expandable">
+ <li>
+            <div class = "collapsible-header">
+               <i class = "material-icons">attach_money</i>Factura 5</div>
+            <div class = "collapsible-body"><form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field col s4">
+          <input id="num5" name="num5" type="text" class="validate" required>
+          <label for="num5" center>Nro de Factura</label>
+        </div>
+    
+    <div class="input-field col s4">
+      <select name="tipofactura5" id="tipofactura5" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+
+<div class="ab5" id="ab5" style="display: none;">
+    <div class="input-field col s4">
+    {% if abonos %} 
+       <select name="abono5" id="abono5" required="required" class="validate">
+      <option value="" disabled selected>Abono</option> 
+      {% for abono5 in abonos %} 
+      <option value="{{abono5.nombre}}">{{abono5.nombre}}</option>
+      {% endfor %}
+    </select>
+    {% else %}   
+      <input id="abono5" name="abono5" class="validate">
+      <label for="abono5">Abono</label>
+	{% endif %}  
+</div>
+  </div>
+  <div class="ga5" id="ga5" style="display: none;">
+    <div class="input-field col s4">
+	{% if gastos %}       
+  <select name="gasto5" id="gasto5" required="required" class="validate">
+      <option value="" disabled selected>Gasto</option> 
+      {% for gasto5 in gastos %} 
+      <option value="{{gasto5.nombre}}">{{gasto5.nombre}}</option>
+      {% endfor %}
+    </select>
+  {% else %}
+      <input id="gasto5" name="gasto5" class="validate">
+      <label for="gasto5">Gasto</label>
+    {% endif %}  
+</div>
+  </div>
+  <div class="se5" id="se5" style="display: none;">
+    <div class="input-field col s4">
+	{% if servicios %} 
+  <select name="servicio5" id="servicio5" required="required" class="validate">
+      <option value="" disabled selected>Servicio</option> 
+      {% for servicio5 in servicios %} 
+      <option value="{{servicio5.nombre}}">{{servicio5.nombre}}</option>
+      {% endfor %}
+    </select>  
+     {% else %}
+      <input id="servicio5" name="servicio5" class="validate">
+      <label for="servicio5">Servicio</label>
+	{% endif %}    
+   </div>
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field col s4">
+          <input id="vencimiento5" name="vencimiento5" type="date" class="validate" required>
+          <label for="vencimiento5" center>Fecha de Vencimiento</label>
+        </div>
+    
+          <div class="input-field col s4">
+          <input id="pago5" name="pago5" type="date" class="validate" required>
+          <label for="pago5" center>Fecha de Pago</label>
+        </div>
+   
+    <div class="input-field col s4">
+      <select name="tipo5" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field col s3">
+      <select name="caja5" id="caja5" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+
+      
+<div class="cons5 " id="cons5" style="display: none;">
+    <div class="input-field col s3">
+
+        <input name="consorcio5" id="consorcio5" class="validate" required>
+        <label for="consorcio5">Consorcio</label>
+          
+</div>
+  </div>
+
+    <div class="input-field col s3">
+      <select name="tipoCaja5" id="tipoCaja5" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  
+          <div class="input-field col s3">
+          <input id="monto5" name="monto5" type="number" class="validate" required>
+          <label for="monto5" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+
+</div>
+</form></div>
+         </li></ul>
+		 </div></div>
+      	   	<div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Seguir Agregando</button></div>
+  <div class="bot row">
+</div>
+
+</div>
+          			</div><div class="borde"></div></div>
+          	</div> 
+          	<div class="col s12 m2 l2"></div>
+      
+	</div>
+
+</div>
+        <script>
+
+  //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});  
+
+//Cantidad de Facturas	
+ $('#valores').change(function() {
+    
+    if($('#valores').val() == '1'){
+      $(".nro").show();
+	  $(".nro2").hide();
+	  $(".nro3").hide();
+	  $(".nro4").hide();
+	  $(".nro5").hide();
+    };
+    if($('#valores').val() == '2'){
+      $(".nro").show();
+	  $(".nro2").show();
+	  $(".nro3").hide();
+	  $(".nro4").hide();
+	  $(".nro5").hide();
+    };
+	if($('#valores').val() == '3'){
+      $(".nro").show();
+	  $(".nro2").show();
+	  $(".nro3").show();
+	  $(".nro4").hide();
+	  $(".nro5").hide();
+    };
+	if($('#valores').val() == '4'){
+      $(".nro").show();
+	  $(".nro2").show();
+	  $(".nro3").show();
+	  $(".nro4").show();
+	  $(".nro5").hide();
+    };
+	if($('#valores').val() == '5'){
+      $(".nro").show();
+	  $(".nro2").show();
+	  $(".nro3").show();
+	  $(".nro4").show();
+	  $(".nro5").show();
+    };
+    });
+
+//Factura 1	
+    $('#caja').change(function() {
+    
+    if($('#caja').val() == '2'){
+      $(".cons").show();
+    };
+    if($('#caja').val() == '1'){
+      $(".cons").hide();
+      document.getElementById("consorcio").required = false;
+    };
+    });
+  $('#tipofactura').change(function() {
+    
+    if ($('#tipofactura').val() == 'Abono')
+    {
+        $(".ab").show();
+        $(".ga").hide();
+        $(".se").hide();
+    };
+    
+    if ($('#tipofactura').val() == 'Gasto')
+    {
+        $(".ga").show();
+        $(".ab").hide();
+        $(".se").hide();
+    };
+
+    if ($('#tipofactura').val() == 'Servicio')
+    {
+        $(".se").show();
+        $(".ga").hide();
+        $(".ab").hide();
+    };   
+});
+//Factura 2	
+$('#caja2').change(function() {
+    
+    if($('#caja2').val() == '2'){
+      $(".cons2").show();
+    };
+    if($('#caja2').val() == '1'){
+      $(".cons2").hide();
+      document.getElementById("consorcio2").required = false;
+    };
+    });
+  $('#tipofactura2').change(function() {
+    
+    if ($('#tipofactura2').val() == 'Abono')
+    {
+        $(".ab2").show();
+        $(".ga2").hide();
+        $(".se2").hide();
+    };
+    
+    if ($('#tipofactura2').val() == 'Gasto')
+    {
+        $(".ga2").show();
+        $(".ab2").hide();
+        $(".se2").hide();
+    };
+
+    if ($('#tipofactura2').val() == 'Servicio')
+    {
+        $(".se2").show();
+        $(".ga2").hide();
+        $(".ab2").hide();
+    };   
+});
+//Factura 3	
+$('#caja3').change(function() {
+    
+    if($('#caja3').val() == '2'){
+      $(".cons3").show();
+    };
+    if($('#caja3').val() == '1'){
+      $(".cons3").hide();
+      document.getElementById("consorcio3").required = false;
+    };
+    });
+  $('#tipofactura3').change(function() {
+    
+    if ($('#tipofactura3').val() == 'Abono')
+    {
+        $(".ab3").show();
+        $(".ga3").hide();
+        $(".se3").hide();
+    };
+    
+    if ($('#tipofactura3').val() == 'Gasto')
+    {
+        $(".ga3").show();
+        $(".ab3").hide();
+        $(".se3").hide();
+    };
+
+    if ($('#tipofactura3').val() == 'Servicio')
+    {
+        $(".se3").show();
+        $(".ga3").hide();
+        $(".ab3").hide();
+    };   
+});
+//Factura 4	
+$('#caja4').change(function() {
+    
+    if($('#caja4').val() == '2'){
+      $(".cons4").show();
+    };
+    if($('#caja4').val() == '1'){
+      $(".cons4").hide();
+      document.getElementById("consorcio4").required = false;
+    };
+    });
+  $('#tipofactura4').change(function() {
+    
+    if ($('#tipofactura4').val() == 'Abono')
+    {
+        $(".ab4").show();
+        $(".ga4").hide();
+        $(".se4").hide();
+    };
+    
+    if ($('#tipofactura4').val() == 'Gasto')
+    {
+        $(".ga4").show();
+        $(".ab4").hide();
+        $(".se4").hide();
+    };
+
+    if ($('#tipofactura4').val() == 'Servicio')
+    {
+        $(".se4").show();
+        $(".ga4").hide();
+        $(".ab4").hide();
+    };   
+});
+//Factura 5	
+$('#caja5').change(function() {
+    
+    if($('#caja5').val() == '2'){
+      $(".cons5").show();
+    };
+    if($('#caja5').val() == '1'){
+      $(".cons5").hide();
+      document.getElementById("consorcio5").required = false;
+    };
+    });
+  $('#tipofactura5').change(function() {
+    
+    if ($('#tipofactura5').val() == 'Abono')
+    {
+        $(".ab5").show();
+        $(".ga5").hide();
+        $(".se5").hide();
+    };
+    
+    if ($('#tipofactura5').val() == 'Gasto')
+    {
+        $(".ga5").show();
+        $(".ab5").hide();
+        $(".se5").hide();
+    };
+
+    if ($('#tipofactura5').val() == 'Servicio')
+    {
+        $(".se5").show();
+        $(".ga5").hide();
+        $(".ab5").hide();
+    };   
+});
+
+ var elem = document.querySelector('.collapsible.expandable');
+var instance = M.Collapsible.init(elem, {
+  accordion: false
+});
+
+  $('.datepicker').pickadate({
+     selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    format: 'yyyy/mm/dd',
+   onClose: function() {
+        valid();
+        
+    }
+     });
+ 
+
+
+        </script>
+ {% endblock %}

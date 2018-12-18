@@ -1,0 +1,98 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l3"></div>
+        <div class="card col s12 m8 l6 z-depth-5" style="padding-right: 0px;
+  padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+          {% for datos in unidades %}
+        		<span class="card-title">Unidad Funcional de {{datos.consorcio.razonSocial}}</span> 
+            {% endfor %}
+        	</div>
+            		<div class="card-action z-depth-5">
+        
+           <table class="responsive-table hide-on-large-only hide-on-med-only">
+        <thead>
+          <tr>
+            <th>Departamento</th>
+            <th>Piso</th> 
+            <th>Alquilado</th>
+              <th>Propietario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+              <th>DNI</th>
+              <th>Telefono Fijo</th>
+              <th>Celular</th>
+              <th>Inquilino</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+              <th>DNI</th>
+              <th>Telefono Fijo</th>
+              <th>Celular</th>       
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in unidades %}
+          <tr> <td>{{dato.departamento}}</td>
+            <td>{{dato.piso}}</td>
+            <td>{{dato.alquilado}}</td>
+            <td></td>
+            <td>{{dato.propietario.nombre}}</td>    
+			<td>{{dato.propietario.apellido}}</td>
+			<td>{{dato.propietario.dni}}</td>
+      <td>{{dato.propietario.telFijo}}</td>
+            <td>{{dato.propietario.celular}}</td>
+            <td></td>
+              <td>{{dato.inquilino.nombre}}</td>    
+      <td>{{dato.inquilino.apellido}}</td>
+      <td>{{dato.inquilino.dni}}</td>
+      <td>{{dato.inquilino.telFijo}}</td>
+        <td>{{dato.inquilino.celular}}</td>
+            
+            
+ 
+             
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+          <table class="hide-on-small-only bordered">
+{% for dato in unidades %}
+          <tr>  <th>Departamento</th><td>{{dato.departamento}}</td></tr>
+          <tr>  <th>Piso</th><td>{{dato.piso}}</td></tr>
+          <tr> <th>Alquilado</th>  <td>{{dato.alquilado}}</td></tr>
+              <tr> <tr><th>Propietario</th><td></td></tr></tr>
+              <tr>  <th>Nombre</th><td>{{dato.propietario.nombre}}</td> </tr>
+              <tr>  <th>Apellido</th><td>{{dato.propietario.apellido}}</td></tr>
+              <tr><th>DNI</th><td>{{dato.propietario.dni}}</td></tr>
+             <tr> <th>Telefono Fijo</th><td>{{dato.propietario.telFijo}}</td></tr>
+             <tr> <th>Celular</th><td>{{dato.propietario.celular}}</td></tr>
+             <div class="inq row" name="inq" id="inq" style="display: none;">
+             <tr> <th>Inquilino</th><td></td></tr>
+             <tr>   <th>Nombre</th><td>{{dato.inquilino.nombre}}</td> </tr>
+             <tr>   <th>Apellido</th><td>{{dato.inquilino.apellido}}</td></tr>
+             <tr> <th>DNI</th><td>{{dato.inquilino.dni}}</td></tr>
+             <tr> <th>Telefono Fijo</th><td>{{dato.inquilino.telFijo}}</td></tr>
+             <tr> <th>Celular</th>  <td>{{dato.inquilino.celular}}</td>    </tr>
+           </div>
+             
+            
+            
+
+         {% endfor %}
+      
+     
+      </table> 
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l3"></div>
+      
+	</div>
+	
+ {% endblock %}

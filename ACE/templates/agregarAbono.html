@@ -1,0 +1,70 @@
+{% extends "ejemplo.html" %}
+{% block content %}
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css"> 
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m4 l4"></div>
+        <div class="card col s12 m4 l4 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Abono</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+         <div class="log row">
+        <div class="input-field">
+    <input id="nombre" name="nombre" type="text" class="validate" required>
+     <label for="nombre" center>Nombre</label>
+    </div>  </div>
+    <div class="log row">
+      <div class="input-field">
+    <input id="descripcion" name="descripcion" type="text" class="validate" data-length="120" required>
+          <label for="descripcion" center>Descripción</label>
+          </div>
+          </div>
+      
+        
+         <div class="log row">
+    
+      
+          <div class="input-field">
+          <input id="dni" name="dni" type="number" class="validate" data-length="8" required>
+          <label for="dni" center>DNI del Propietario</label>
+        </div>
+     
+      </div> 
+
+       
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m4 l4"></div>
+      
+	</div>
+	<script>
+          //Calendario
+
+  $('.datepicker').pickadate({
+     selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    format: 'dd/mm/yyyy',
+   onClose: function() {
+        valid();
+    }
+     });
+
+        </script>
+
+ {% endblock %}
+        

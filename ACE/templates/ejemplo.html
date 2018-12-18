@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Arys</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL}}css/materialize.min.css"  media="screen,projection"/>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript" src="{{ STATIC_URL}}js/materialize.min.js"></script>
+     <script type="text/javascript" src="{{ STATIC_URL}}js/base.js"></script>
+</head>
+<body>
+ 
+	<header><nav class="menu z-depth-5"> <div class="nav-wrapper">   <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large left"><i class="material-icons">menu</i></a>
+      <a href="0 inicio.html" class="brand-logo center">ACE</a>
+      <div class="buscar right" id="topbarsearch">
+             <a href="http://127.0.0.1:8000/AdminConsorcios/busquedaConsorcio/"><i class="material-icons">search</i></a>
+                              <!--div class="input-field white-text ">
+               
+                                i class="white-text material-icons prefix">search</i>
+                                <input type="text" id="busqueda" name="busqueda" class="autocomplete white-text " >
+                                </div-->
+                              </div>
+                          </div>
+                          <ul class="side-nav white" id="mobile-demo">
+        
+        <li class="sidenav-header">
+          <div class="z-depth-4">
+          <div class="row">
+            <div class="col s4">
+                <img src="{{ STATIC_URL}}img/arys.jpeg" alt="" width="48px" height="48px" class="circle responsive-img valign profile-image">
+				</div>
+            <div class="col s8">
+                <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown">
+				{% if user.is_authenticated %}
+				{{user.username}}
+				{% else %}
+				Usuario 
+				{% endif %}
+				<i class="mdi-navigation-arrow-drop-down center"></i></a>
+                <ul id="profile-dropdown" class="dropdown-content">
+				{% if user.is_authenticated %}
+					<li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/perfil/">Perfil</a></li>
+					<li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/registro/">Registrarse</a></li>
+					<li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/cerrarsesion/">Salir</a></li>
+				{% else %}	
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/iniciarsesion/">Ingresar</a></li>
+					<li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/registro/">Registrarse</a></li>
+				{% endif %}	
+                    
+                    
+                </ul>
+            </div>
+          </div>
+        </div>
+        </li>
+        
+        
+        
+        
+         <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">account_balance</i>Administracion<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">payment</i>Caja Administracion<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/aperturaCajaAdministracion/"><i class="material-icons">add</i>Apertura de Caja</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/eliminarCajaAdministracion/"><i class="material-icons">delete</i>Eliminar Caja</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarCajaAdministracion/"><i class="material-icons">crop_original</i>Mostrar Caja</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+                 
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">attach_money</i>Ingresos/Egresos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarFactura/"><i class="material-icons">add</i>Ingresar Facturas</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarFactura/"><i class="material-icons">crop_original</i>Mostrar Facturas</a></li>
+                  
+                      <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">archive</i>Archivar<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/archivarFactura/"><i class="material-icons">sd_storage</i>Archivar Factura</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarFacturaArchivada/"><i class="material-icons">storage</i>Mostrar Factura</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">location_city</i>Consorcios<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarConsorcio/"><i class="material-icons">add</i>Ingresar Consorcio</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarConsorcio/"><i class="material-icons">crop_original</i>Mostrar Consorcios</a></li>
+          <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">archive</i>Archivar<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/archivarConsorcio/"><i class="material-icons">sd_storage</i>Archivar Consorcio</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarConsorcioArchivado/"><i class="material-icons">storage</i>Mostrar Consorcio</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>        
+          <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">home</i>Unidad Funcional<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarUnidadFuncional/"><i class="material-icons">add</i>Agregar Unidad Funcional</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarUnidadFuncional/"><i class="material-icons">crop_original</i>Mostrar Unidad Funcional</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+         
+          <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">payment</i>Caja Consorcio<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/aperturaCajaConsorcio/"><i class="material-icons">add</i>Apertura de Caja</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/eliminarCajaConsorcio/"><i class="material-icons">delete</i>Eliminar Caja</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarCajaConsorcio/"><i class="material-icons">crop_original</i>Mostrar Caja</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>               
+                  <li><div class="divider"></div></li>
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">report_problem</i>Reclamos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarReclamo/"><i class="material-icons">add</i>Ingresar Reclamos</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarReclamo/"><i class="material-icons">crop_original</i>Mostrar Reclamos</a></li> 
+          <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">archive</i>Archivar<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/archivarReclamo/"><i class="material-icons">sd_storage</i>Archivar Reclamo</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarReclamoArchivado/"><i class="material-icons">storage</i>Mostrar Reclamo</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>  
+                  <li><div class="divider"></div></li>    
+
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li> 
+           <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">person</i>Empleados<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarEmpleado/"><i class="material-icons">person_add</i>Agregar Empleados</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarEmpleado/"><i class="material-icons">crop_original</i>Mostrar Empleados</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/eliminarEmpleado/"><i class="material-icons">delete</i>Eliminar Empleados</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+                   
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">insert_chart</i>Movimientos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarEstadisticas/"><i class="material-icons">bar_chart</i>Movimientos Totales</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarEstadisticasEfectivo/"><i class="material-icons">bar_chart</i>Movimientos Totales Efectivo</a></li>				 
+				 <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/arqueoCajas/"><i class="material-icons">bar_chart</i>Arqueos de Cajas</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">notification_important</i>Vencimientos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarAlerta/"><i class="material-icons">add_alert</i>Agregar Vencimiento</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/eliminarAlerta/"><i class="material-icons">delete</i>Eliminar Vencimiento</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarAlerta/"><i class="material-icons">crop_original</i>Mostrar Vencimiento</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+                      </nav>
+                  </header>
+                  <div class="contenedor">{% block content %}
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/base.css">              	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; height: 1000px; ">
+		
+     
+   
+      
+	</div>
+	 {% endblock %}
+</div>
+<footer class="final">
+         
+            <div class="footer row">
+              
+              <div class="col l6 s12"></div>
+          </div>
+          <div class="footer-copyright">
+           
+          
+            <div class="center z-depth-5">
+          UNLA © 2017 Copyright
+            </div>
+           
+          </div>
+        </div>
+        </footer>
+</body>
+</html>

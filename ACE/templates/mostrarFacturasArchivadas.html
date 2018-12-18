@@ -1,0 +1,191 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+	<div class="row">	
+     
+    <div class="col s12 m2 l1"></div>
+        <div class="card col s12 m8 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Facturas del Consorcio </span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+          <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s2"><a class="active" href="#test-swipe-1">Efectivo</a></li>
+    <li class="tab col s2"><a href="#test-swipe-2">Banco</a></li>
+	<li class="tab col s2"><a href="#test-swipe-3">Cheques</a></li>
+	<li class="tab col s2"><a href="#test-swipe-4">Pago de Expensas</a></li>
+	<li class="tab col s2"><a href="#test-swipe-5">Todas</a></li>
+
+  </ul>
+  <div id="test-swipe-1" class=""> 
+  <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+	
+			<th>Movimiento</th>
+              <th>Nro De Factura</th>
+			  <th>Factura</th>
+			  <th>Pago</th>
+			  <th>Monto</th>
+			  <th>Observaciones</th>
+              <th></th> 
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in facturasConsorcioEfectivo %}
+          <tr>
+            <td>{{dato.tipo}}</td>   
+            <td>{{dato.numero}}</td>    
+			<td>{{dato.tipoDeFactura}}</td>
+			<td>{{dato.fechaPago|date:'d-m-Y'}}</td>
+            <td>{{dato.monto}}</td>
+            <td>{{dato.observaciones}}</td>
+    
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+	
+	<div id="test-swipe-2" class=""> 
+	<div class="row"> 
+    <table class="responsive-table">
+        <thead>
+         
+	
+	 <tr>
+			  <th>Movimiento</th>
+              <th>Nro De Factura</th>
+			  <th>Factura</th>
+			  <th>Pago</th>
+			  <th>Monto</th>
+			  <th>Observaciones</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in facturasConsorcioBancos %}
+          <tr>
+			<td>{{dato.tipo}}</td>   
+            <td>{{dato.numero}}</td>    
+			<td>{{dato.tipoDeFactura}}</td>
+			<td>{{dato.fechaPago|date:'d-m-Y'}}</td>
+            <td>{{dato.monto}}</td>
+            <td>{{dato.observaciones}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+	
+	<div id="test-swipe-3" class=""> 
+	<div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+	
+	 <tr>
+			  <th>Movimiento</th>
+              <th>Nro De Factura</th>
+			  <th>Factura</th>
+			  <th>Pago</th>
+			  <th>Monto</th>
+			  <th>Observaciones</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in facturasConsorcioCheque %}
+          <tr>
+			<td>{{dato.tipo}}</td>   
+            <td>{{dato.numero}}</td>    
+			<td>{{dato.tipoDeFactura}}</td>
+			<td>{{dato.fechaPago|date:'d-m-Y'}}</td>
+            <td>{{dato.monto}}</td>
+            <td>{{dato.observaciones}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+	
+	
+  <div id="test-swipe-4" class="">
+  <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+		  
+              <th>Nro De Comprobante</th>
+			  <th>Pago</th>
+			  <th>Monto</th>
+			  <th>Observaciones</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in facturasConsorcioExpensas %}
+          <tr>
+			
+            <td>{{dato.numero}}</td>    
+			<td>{{dato.fechaPago|date:'d-m-Y'}}</td>
+            <td>{{dato.monto}}</td>
+            <td>{{dato.observaciones}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+  </div></div>
+  
+    <div id="test-swipe-5" class="">
+	<div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+		  <th>Movimiento</th>
+              <th>Nro De Factura</th>
+			  <th>Factura</th>
+			  <th>Pago</th>
+			  <th>Monto</th>
+			  <th>Observaciones</th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in facturasConsorcioT %}
+          <tr>
+			<td>{{dato.tipo}}</td>   
+            <td>{{dato.numero}}</td>    
+			<td>{{dato.tipoDeFactura}}</td>
+			<td>{{dato.fechaPago|date:'d-m-Y'}}</td>
+            <td>{{dato.monto}}</td>
+            <td>{{dato.observaciones}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+  </div></div>
+  
+  
+  
+
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l1"></div>
+     </div>  
+	</div>
+	
+ {% endblock %}

@@ -1,0 +1,330 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+
+
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l1"></div>
+        <div class="card col s12 m8 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Modificar Consorcio</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+         <div class="log row">
+		
+        <div class="input-field col s4">
+          <input id="consorcio" name="consorcio" type="text" class="validate" required>
+          <label for="consorcio">Consorcio</label>
+       </div> 
+		<div class="input-field col s4">
+        <select name="cambio" id="cambio" required="required" class="validate">
+      <option value="" disabled selected>¿Desea modificar la Razon Social?</option>
+      <option value="1">Si</option>
+      <option value="2">No</option>
+    </select>
+	 </div>
+	 <div class="modifica" name="modifica" id="modifica" style="display: none;">
+	<div class="input-field col s4">
+          <input id="razonsocial" name="razonsocial" type="text" class="validate" required>
+          <label for="razonsocial">Razon Social</label>
+       </div> 
+	   </div> 
+         
+	   <table class="responsive-table">
+        <thead>
+          <tr>
+		  <th></th>
+		   <th></th>
+		    <th></th>
+              <th>¿Que desea cambiar?</th>
+			  <th></th>
+		   <th></th>
+		    <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><input type="checkbox" id="d" name="d" value="uno">
+			<label for="d">Dirección</label></td>
+            <td><input type="checkbox" id="l" name="l" value="dos">
+			<label for="l">Localidad</label></td>
+            <td><input type="checkbox" id="c" name="c" value="tres">
+			<label for="c">Codigo Postal</label></td>
+			<td><input type="checkbox" id="cu" name="cu" value="cuatro">
+			<label for="cu">Cuit</label></td>
+			<td> <input type="checkbox" id="ia" name="ia" value="cinco">
+			<label for="ia">Inicio Administracion</label></td>
+			<td><input type="checkbox" id="iac" name="iac" value="seis">
+			<label for="iac">Inicio Actividad Consorcio</label></td>
+			<td><input type="checkbox" id="aec" name="aec" value="siete">
+			<label for="aec">Actividad Economica</label></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" id="r" name="r" value="ocho">
+			<label for="r">Responsable</label></td>
+            <td><input type="checkbox" id="ri" name="ri" value="nueve">
+			<label for="ri">Responsabilidad IVA</label></td>
+			<td><input type="checkbox" id="su" name="su" value="diez">
+			<label for="su">Suterh</label></td>
+            <td><input type="checkbox" id="cco" name="cco" value="once">
+			<label for="cco">Cantidad de Cocheras</label></td>
+            <td><input type="checkbox" id="uf" name="uf" value="doce">
+			<label for="uf">Unidades Funcionales</label></td>
+            <td><input type="checkbox" id="ca" name="ca" value="trece">
+			<label for="ca">Cantidad Asensores</label></td>
+			<td><input type="checkbox" id="cca" name="cca" value="catorce">
+			<label for="cca">Cantidad Calderas</label></td>
+          </tr>
+        </tbody>
+      </table>
+
+	   <div class="uno" id="dir" style="display: none;">
+       <div class="input-field col s5">
+     <input id="direccion" name="direccion" type="text" class="validate" >
+          <label for="direccion">Dirección</label>
+</div> 
+</div>    
+<div class="dos" id="loc" style="display: none;">
+<div class="input-field col s4">
+   <input id="localidad" name="localidad" type="text" class="validate" >
+          <label for="localidad" center>Localidad</label>
+</div>
+      </div>
+	  <div class="tres" id="cod" style="display: none;">
+	   <div class="input-field col s3">
+    <input id="cp" name="cp" type="text" class="validate" >
+          <label for="cp">Codigo Postal</label>
+</div> 
+	  </div>
+	 
+          <div class="log row">
+   <div class="cuatro" id="cui" style="display: none;">
+<div class="input-field col s4">
+      <input id="cuit" name="cuit" type="number" class="validate" >
+          <label for="cuit" center>Cuit</label>
+          </div>
+		  </div>
+		  <div class="cinco" id="iad" style="display: none;">
+              <div class="input-field col s4">
+       <input id="inicioAdministracion" name="inicioAdministracion" type="date" class=" validate" >
+          <label for="inicioAdministracion" center>Inicio Administracion</label>
+          </div> 
+</div>		  
+         <div class="seis" id="iaco" style="display: none;">
+        <div class="input-field col s4">
+       <input id="inicioActividadConsorcio" name="inicioActividadConsorcio" type="date" class=" validate" >
+          <label for="inicioActividadConsorcio" center>Inicio Actividad Consorcio</label>
+          </div>  
+   </div>    
+  </div>
+
+         <div class="log row">
+<div class="siete" id="ae" style="display: none;">
+          <div class="input-field col s4">
+          <select name="actividadEconomica" class="validate">
+      <option value="" disabled selected>Actividad Economica</option>
+      <option value="Administracion de Fondos del Consorcio">Administracion de Fondos del Consorcio</option>
+    </select>
+        </div>
+		 </div>
+		<div class="ocho" id="re" style="display: none;">
+         <div class="input-field col s4">
+        <select name="responsable" class="validate">
+      <option value="" disabled selected>Responsable</option>
+      <option value="Ricardo">Ricardo</option>
+      <option value="Rocio">Rocio</option>
+      <option value="Sebastian">Sebastian</option>
+    </select>
+          </div></div>
+		   <div class="nueve" id="riv" style="display: none;">
+            <div class="input-field col s4">
+       <select name="responsabilidadIVA" class="validate">
+      <option value="" disabled selected>Responsabilidad IVA</option>
+      <option value="Responsable">Responsable Inscripto</option>
+      <option value="Monotributista">Monotributista</option>
+      <option value="Exento">Exento</option>
+    <option value="Consumidor Final">Consumidor Final</option>
+    </select>
+          </div></div>
+        </div>
+         <div class="log row">
+<div class="diez" id="sut" style="display: none;">
+          <div class="input-field col s4">
+       <input id="suterh" name="suterh" type="text" class="validate" >
+          <label for="suterh" center>Suterh</label>
+          </div>
+        </div>
+
+          <div class="once" id="ccoc" style="display: none;">
+      <div class="input-field col s2">
+      <input id="cc" name="cc" type="number" class="validate" min="0" >
+          <label for="cc" center>Cantidad de Cocheras</label>
+          </div> 
+          </div>
+          <div class="doce" id="ufu" style="display: none;">
+           <div class="input-field col s2">
+      <input id="unidadfuncional" name="unidadfuncional" type="number" class="validate"  min="1" >
+          <label for="unidadfuncional" center>Unidades Funcionales</label>
+          </div>
+          </div>
+<div class="trece" id="cas" style="display: none;">
+          <div class="input-field col s2">
+       <input id="cantidadAsensores" name="cantidadAsensores" type="number" class="validate" min="0" >
+          <label for="cantidadAsensores" center>Cantidad Asensores</label>  </div>
+          </div>
+          <div class="catorce" id="ccal" style="display: none;">
+          <div class="input-field  col s2">
+          <input id="cantidadCalderas" name="cantidadCalderas" type="number" class="validate" min="0" >
+          <label for="cantidadCalderas" center>Cantidad Calderas</label>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+       
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Modificar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l1"></div>
+      
+	</div>
+
+
+      <script> 
+	
+  
+       $(document).ready(function(){
+    $('input[type="checkbox"]').click(function(){
+        var inputValue = $(this).attr("value");
+        $("." + inputValue).toggle();
+    });
+});
+
+
+//datos no ingresados
+ $('#d').change(function() {  
+    if($('#d').val() != 'uno'){
+      document.getElementById("direccion").required = false;
+    };
+    });
+ $('#l').change(function() {  
+    if($('#l').val() != 'dos'){
+      document.getElementById("localidad").required = false;
+    };
+    });
+ $('#c').change(function() {  
+    if($('#c').val() != 'tres'){
+      document.getElementById("cp").required = false;
+    };
+    });
+ $('#cu').change(function() {  
+    if($('#cu').val() != 'cuatro'){
+      document.getElementById("cuit").required = false;
+    };
+    });
+ $('#ia').change(function() {  
+    if($('#ia').val() != 'cinco'){
+      document.getElementById("inicioAdministracion").required = false;
+    };
+    });
+ $('#iac').change(function() {  
+    if($('#iac').val() != 'seis'){
+      document.getElementById("inicioActividadConsorcio").required = false;
+    };
+    });	
+	 $('#aec').change(function() {  
+    if($('#aec').val() != 'siete'){
+      document.getElementById("actividadEconomica").required = false;
+    };
+    });
+ $('#r').change(function() {  
+    if($('#r').val() != 'ocho'){
+      document.getElementById("responsable").required = false;
+    };
+    });
+ $('#ri').change(function() {  
+    if($('#ri').val() != 'nueve'){
+      document.getElementById("responsabilidadIVA").required = false;
+    };
+    });	
+	 $('#su').change(function() {  
+    if($('#su').val() != 'diez'){
+      document.getElementById("suterh").required = false;
+    };
+    });
+ $('#cco').change(function() {  
+    if($('#cco').val() != 'once'){
+      document.getElementById("cc").required = false;
+    };
+    });	
+	 $('#uf').change(function() {  
+    if($('#uf').val() != 'doce'){
+      document.getElementById("unidadfuncional").required = false;
+    };
+    });
+ $('#ca').change(function() {  
+    if($('#ca').val() != 'trece'){
+      document.getElementById("cantidadAsensores").required = false;
+    };
+    });
+ $('#cca').change(function() {  
+    if($('#cca').val() != 'catorce'){
+      document.getElementById("cantidadCalderas").required = false;
+    };
+    });	
+	
+	 $('#cambio').change(function() {
+    
+    if($('#cambio').val() == '1'){
+      $(".modifica").show();
+    };
+    if($('#cambio').val() == '2'){
+      $(".modifica").hide();
+      document.getElementById("razonsocial").required = false;
+    };
+    });
+   	  //valido select nulo
+	  $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+	  
+	  
+	  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+   
+          //Calendario
+
+  $('.datepicker').pickadate({
+     selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    format: 'yyyy/mm/dd',
+   onClose: function() {
+        valid();
+    }
+     });
+
+
+        </script>
+  
+{% endblock %}

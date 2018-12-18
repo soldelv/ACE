@@ -1,0 +1,153 @@
+{% extends "ejemplo.html" %}
+      {% block content %}
+      <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+  <div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px;">
+    <div class="col s12 m2 l2"></div>
+        <div class="card col s12 m8 l8  z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content">
+        		<span class="card-title">Modificar Perfil de {{user.username}}</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+    
+      <form method="post" class="form">{% csrf_token %}
+	  	
+          <div class="lo row">  
+    <div class="input-field col s6">
+     <select name="valores" id="valores" required="required" class="validate">
+      <option value="" disabled selected>¿Que desea Modificar?</option>
+      <option value="1">Agregar Datos</option>
+      <option value="2">Cambiar Clave</option>
+	  <option value="3">Cambiar Email</option>
+	  <option value="4">Cambiar nombre de Usuario</option>
+    </select>
+  </div>
+  </div>  
+		
+		
+		
+		
+		<div class="dat" id="dat" style="display: none;">
+         <div class="log row">
+          <div class="input-field col s6">
+          <input id="nombre" name="nombre" type="text" class="validate" required>
+          <label for="nombre" center>Nombre</label>
+		  </div>
+		  <div class="input-field col s6">
+		  <input id="apellido" name="apellido" type="text" class="validate" required>
+          <label for="apellido" center>Apellido</label>
+        </div>
+      </div>
+	  </div>
+	  <div class="cl" id="cl" style="display: none;">
+		<div class="log row">
+          <div class="input-field col s6">
+          <input id="clave" name="clave" type="password" class="validate" required>
+          <label for="clave" center>Clave</label>
+		  </div>
+		  <div class="input-field col s6">
+		  <input id="clave_conf" name="clave_conf" type="password" class="validate" required>
+          <label for="clave_conf" center>Confirmar Clave</label>
+        </div>
+      </div>
+	  </div>
+	  <div class="em" id="em" style="display: none;">
+	  <div class="log row">
+          <div class="input-field col s6">
+          <input id="email" name="email" type="email" class="validate" required>
+          <label for="email" center>Email</label>
+		  </div>
+      </div>
+	  </div>
+	  <div class="us" id="us" style="display: none;">
+	  <div class="log row">
+          <div class="input-field col s6">
+          <input id="usuario" name="usuario" type="text" class="validate" required>
+          <label for="usuario" center>Usuario</label>
+		  </div>
+      </div>
+	  </div> 
+  <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Modificar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+
+</div>
+  </div>
+
+    </div>
+   </form>
+
+  
+
+
+
+          		
+          			<div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l2"></div>
+          </div>
+		   <script>
+ //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+	
+	
+    $('#valores').change(function() {
+    
+    if($('#valores').val() == '2'){
+      $(".cl").show();
+	  $(".dat").hide();
+	  $(".em").hide();
+	  $(".us").hide();
+	  document.getElementById("nombre").required = false;
+	  document.getElementById("apellido").required = false;
+	  document.getElementById("email").required = false;
+	  document.getElementById("usuario").required = false;
+    };
+    if($('#valores').val() == '1'){
+      $(".cl").hide();
+	  $(".dat").show();
+	  $(".em").hide();
+	  $(".us").hide();
+      document.getElementById("clave").required = false;
+	  document.getElementById("clave_conf").required = false;
+	  document.getElementById("email").required = false;
+	  document.getElementById("usuario").required = false;
+    };
+	if($('#valores').val() == '3'){
+      $(".cl").hide();
+	  $(".dat").hide();
+	  $(".em").show();
+	  $(".us").hide();
+      document.getElementById("clave").required = false;
+	  document.getElementById("clave_conf").required = false;
+	  document.getElementById("nombre").required = false;
+	  document.getElementById("apellido").required = false;
+	  document.getElementById("usuario").required = false;
+    };
+	if($('#valores').val() == '4'){
+      $(".cl").hide();
+	  $(".dat").hide();
+	  $(".em").hide();
+	  $(".us").show();
+      document.getElementById("clave").required = false;
+	  document.getElementById("clave_conf").required = false;
+	  document.getElementById("nombre").required = false;
+	  document.getElementById("apellido").required = false;
+	  document.getElementById("email").required = false;
+    };
+    });
+	
+          //Calendario
+   document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });</script>
+        {% endblock %}

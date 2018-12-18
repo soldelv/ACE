@@ -1,0 +1,49 @@
+{% extends "ejemplo.html" %}
+      {% block content %}
+      <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+  <div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px;">
+    <div class="col s12 m2 l2"></div>
+        <div class="card col s12 m8 l8  z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content">
+        		<span class="card-title">Usuario {{user.username}}</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+
+						<table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Nombre de Usuario</th>
+              <th>Email</th>
+        <th>Nombre</th>
+              <th>Apellido</th>
+			  <th>Modificar</th>
+        
+          </tr>
+     </thead>
+
+        <tbody>
+         
+          <tr>
+			<td>{{user.username}}</td>
+			<td>{{user.email}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+			<td><a class="btn" href="http://127.0.0.1:8000/AdminConsorcios/usuario/modificarPerfil/{{user.id}}/"><i class="material-icons">create</i></a></td>
+           
+          </tr>
+   
+        </tbody>
+      </table> 
+	  
+  
+ 
+
+          			</div>
+          			<div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l2"></div>
+          </div>
+		
+ 
+        {% endblock %}

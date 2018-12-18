@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/factura.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript" src="js/materialize.min.js"></script>
+     <script type="text/javascript" src="js/base.js"></script>
+</head>
+<body>
+	<header><nav class="menu z-depth-5"> <div class="nav-wrapper">   <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large left"><i class="material-icons">menu</i></a>
+      <a href="0 inicio.html" class="brand-logo center">ACE</a>
+<div class="buscar hide-on-small-only" id="topbarsearch">
+                              <div class="input-field white-text right">
+                                <i class="white-text material-icons prefix">search</i>
+                                <input type="text" id="autocomplete-input" class="autocomplete white-text " >
+                                </div>
+                              </div>
+                          </div>
+                          <ul class="side-nav white" id="mobile-demo">
+        
+        <li class="sidenav-header">
+          <div class="z-depth-4">
+          <div class="row">
+            <div class="col s4">
+                <img src="img/arys.jpeg" alt="" width="48px" height="48px" class="circle responsive-img valign profile-image">
+				</div>
+            <div class="col s8">
+                <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown">Usuario {{user.username}}<i class="mdi-navigation-arrow-drop-down center"></i></a>
+                <ul id="profile-dropdown" class="dropdown-content">
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/iniciarsesion/">Ingresar</a></li>
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/registro/">Registrarse</a></li>
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/cerrarsesion/">Salir</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        </li>
+        
+        
+        
+        
+        
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">attach_money</i>Ingresos/Egresos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarFactura/"><i class="material-icons">add</i>Ingresar Facturas</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/modificarFactura/"><i class="material-icons">create</i>Modificar Facturas</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarFactura/"><i class="material-icons">crop_original</i>Mostrar Facturas</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">location_city</i>Consorcios<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarConsorcio/"><i class="material-icons">add</i>Ingresar Consorcio</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/modificarConsorcio/"><i class="material-icons">create</i>Modificar/Eliminar Consorcio</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarConsorcio/"><i class="material-icons">crop_original</i>Mostrar Consorcios</a></li>
+                   <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">home</i>Unidad Funcional<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarUnidadFuncional/"><i class="material-icons">add</i>Agregar Unidad Funcional</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+           <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">attach_money</i>Abono<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarAbono/"><i class="material-icons">add</i>Agregar Abono</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+           <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">attach_money</i>Gasto<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarGasto/"><i class="material-icons">add</i>Agregar Gasto</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+         <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">attach_money</i>Servicio<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarServicio/"><i class="material-icons">add</i>Agregar Servicio</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">report_problem</i>Reclamos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarReclamo/"><i class="material-icons">add</i>Ingresar Reclamos</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/modificarReclamo/"><i class="material-icons">create</i>Modificar/Eliminar Reclamos</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarReclamo/"><i class="material-icons">crop_original</i>Mostrar Reclamos</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+                      </nav>
+                  </header>
+                  <div class="contenedor">
+	<div class="contenido row" style="background-image: url(img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m1 l1"></div>
+        <div class="card col s12 m10 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Factura</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+      
+          <div class="input-field col s2">
+          <input id="nro" name="nro" type="text" class="validate" required>
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+      
+   
+    <div class="input-field col s1">
+      <select name="tipofactura">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option id="tipo1" value="1">Abono</option>
+      <option id="tipo2" value="2">Gasto</option>
+      <option id="tipo3" value="3">Servicio</option>
+    </select>
+  
+
+  </div>
+
+    <div class="input-field col s1">
+    <select name="servicio">
+      <option value="" disabled selected>Servicio</option>
+      <option value="1">Agua</option>
+      <option value="2">Gas</option>
+      <option value="3">Luz</option>
+    <option value="4">Limpieza</option>
+    <option value="5">Otros</option>
+    </select>
+
+  </div> 
+
+
+          <div class="input-field col s2">
+          <input id="vencimiento" name="vencimiento" type="date" class="datepicker validate" required>
+          <label for="vencimiento" center>Fecha de Vencimiento</label>
+        </div>
+  
+       
+    <div class="input-field col s1">
+      <select name="tipo">
+      <option value="" disabled selected>Tipo</option>
+      <option value="1">Ingreso</option>
+      <option value="2">Egreso</option>
+    </select>
+  
+ 
+  </div>
+ 
+    <div class="input-field col s1">
+      <select name="caja[]">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+
+  </div>
+      
+          
+    <div class="input-field col s2">
+    <select name="consorcio[]">
+      <option value="" disabled selected>Elige Consorcio</option>
+      <option value="1">Alcorta</option>
+      <option value="2">Alvear</option>
+      <option value="3">Anchorena</option>
+    <option value="4">Arenales</option>
+    <option value="5">Artigas</option>
+    </select>
+
+  </div>
+    
+          <div class="input-field col s1">
+          <input id="monto" name="monto[]" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+   
+<div class="row"></div>
+      <div class="boton center">
+         <div class="botn row">
+          <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons" type="submit">add</i></a>
+  
+</div>
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m1 l1"></div>
+      
+	</div>
+	<script>//Select
+ /Calendario
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15,// Creates a dropdown of 15 years to control year
+	clear: 'Borrar',
+    format: 'dd-mm-yyyy' });</script>
+</div>
+<footer class="final"">
+         
+            <div class="footer row">
+              
+              <div class="col l6 s12"></div>
+          </div>
+          <div class="footer-copyright">
+           
+          
+            <div class="center z-depth-5">
+          UNLA © 2017 Copyright
+            </div>
+           
+          </div>
+        </div>
+        </footer>
+  
+</body>
+
+</html>

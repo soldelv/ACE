@@ -1,0 +1,71 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m3 l4"></div>
+        <div class="card col s12 m6 l4 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title" style="color: red;">¡El consorcio ingresado no existe!</span>
+				<span style="color: red;">Por favor verifique la informacion e ingrese nuevamente</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+
+        
+            			<form method="post" class="form">{% csrf_token %}
+  
+                <div class="lo row">
+    <div class="input-field">
+      <select name="valor" id="valor" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+  </div>
+      
+<div class="cons row" id="cons" style="display: none;">
+    <div class="input-field">
+
+        <input name="consorcio" id="consorcio" required>
+        <label for="consorcio">Consorcio</label>
+
+</div>
+  </div>
+
+ 
+
+      <div class="boton center">
+         <div class="botn row" style="padding-top: 20px;">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Mostrar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m3 l4"></div>
+      
+	</div>
+	
+
+<script>
+  //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    
+   $('#valor').change(function() {
+    
+    if($('#valor').val() == '2'){
+      $(".cons").show();
+    };
+    if($('#valor').val() == '1'){
+      $(".cons").hide();
+      document.getElementById("consorcio").required = false;
+    };
+    });
+</script>
+  {% endblock %}

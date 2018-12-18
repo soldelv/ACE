@@ -1,0 +1,44 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l3"></div>
+        <div class="card col s12 m8 l6 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Gastos</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+        
+            			 <table class="responsive-table">
+        <thead>
+          <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+         {% for dato in gastos %}
+          <tr>
+            <td>{{dato.id}}</td>
+      <td>{{dato.nombre}}</td>
+      <td>{{dato.descripcion}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l3"></div>
+      
+	</div>
+	
+ {% endblock %}

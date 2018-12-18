@@ -1,0 +1,296 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+ <link rel="stylesheet" href="{{ STATIC_URL}}css/reclamo.css">
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l2"></div>
+        <div class="card col s12 m8 l8 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Reclamo</span>
+				
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %}
+        
+        <div class="input-field col s4">
+         <input id="fecha" name="fecha" type="date" class="validate" required>
+     <label for="fecha">Fecha</label>
+       </div>
+	   
+     <div class="input-field col s4">
+        <input name="consorcio" id="consorcio" type="number" class="validate" required>
+        <label for="consorcio">Numero de Consorcio</label>
+</div>
+ 
+   
+  
+           <div class="input-field col s4">
+    <select name="estado" required="required" class="validate">
+      <option value="" disabled selected>Estado</option>
+      <option value="Iniciado">Iniciado</option>
+      <option value="Pendiente">Pendiente</option>
+    <option value="Terminado">Terminado</option>
+    </select>
+</div>
+           <div class="input-field col s4">
+    <select name="ubicacion" id="ubicacion" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option> 
+	  <option value="Comun">Partes Comunes</option>
+      <option value="Particular">Reparaciones en Unidad Funcional</option>
+     
+    </select>
+</div>
+  
+  <div class="nro" id="nro" style="display: none;">
+    
+
+
+<div class="input-field col s4">
+          <input id="piso" name="piso" type="number" class="validate" required>
+          <label for="piso" center>Unidad Funcional</label>
+        </div>
+    <div class="input-field col s4">
+        <input name="numero" id="numero" type="text" class="validate" required>
+        <label for="numero">Piso y Departamento</label>
+</div>
+
+
+
+<div class="input-field col s4">
+    <select name="estaAlquilado" id="estaAlquilado"  required="required" class="validate"> 
+      <option value="" disabled selected>¿Esta Alquilado?</option>
+      <option value="0">SI</option>
+      <option value="1">NO</option>
+    </select>
+</div> 
+  </div>
+   
+
+<div class="row">    </div>  
+<div class="pro" id="pro" style="display: none;">
+ <div class="card-content z-depth-4 center">
+          <p class="center">Datos del Propietario</p>
+        </div> 
+        <div class="row">    </div>  
+		<div class="row">     
+          <div class="input-field col s3">
+          <input id="nombre" name="nombre" type="text" class="validate" required>
+          <label for="nombre" center>Nombre</label>
+        </div>
+     
+          <div class="input-field col s3">
+          <input id="apellido" name="apellido" type="text" class="validate" required>
+          <label for="apellido" center>Apellido</label>
+        </div>
+      
+          <div class="input-field col s3">
+          <input id="dni" name="dni" type="number" class="validate" required data-length="8">
+          <label for="dni" center>DNI</label>
+        </div>
+     
+        <div class="input-field col s3">
+          <input id="email" name="email" type="email" class="validate" required>
+          <label for="email" center>Email</label>
+        </div>
+	 </div>
+	 <div class="row"> 
+          <div class="input-field col s3">
+          <input id="telFijo" name="telFijo" type="number" class="validate" required>
+          <label for="telFijo" center>Telefono Fijo</label>
+        </div>
+     
+          <div class="input-field col s3">
+          <input id="celular" name="celular" type="number" class="validate" required>
+          <label for="celular" center>Celular</label>
+        </div>
+   
+   
+          <div class="input-field col s3">
+          <input id="localidad" name="localidad" type="text" class="validate" required>
+          <label for="localidad" center>Localidad</label>
+        </div>
+     
+
+          <div class="input-field col s3">
+          <input id="cp" name="cp" type="text" class="validate" required>
+          <label for="cp" center>Codigo Postal</label>
+        </div>
+
+          </div>
+     
+    </div>
+	
+<div class="inq" id="inq" style="display: none;">
+
+      <div class="input-field col s6">
+     <input id="direccion" name="direccion" type="text" class="validate" required>
+          <label for="direccion">Dirección</label>
+</div>  
+</div>
+
+<div class="inq" id="inq" style="display: none;">
+ 
+<div class="row">  </div>    
+<div class="row">
+<div class="card-content z-depth-4 center">
+          <p class="center">Datos del Inquilino</p>
+        </div> 
+        <div class="row">    </div> 
+          <div class="input-field col s3">
+          <input id="nombres" name="nombres" type="text" class="validate" required>
+          <label for="nombres" center>Nombre</label>
+        </div>
+     
+          <div class="input-field col s3">
+          <input id="apellidos" name="apellidos" type="text" class="validate" required>
+          <label for="apellidos" center>Apellido</label>
+        </div>
+      
+          <div class="input-field col s3">
+          <input id="dnis" name="dnis" type="number" class="validate" required data-length="8">
+          <label for="dnis" center>DNI</label>
+        </div>
+     
+       <div class="input-field col s3">
+          <input id="emails" name="emails" type="email" class="validate" required>
+          <label for="emails" center>Email</label>
+        </div>
+      </div> 
+     
+         <div class="row">
+          
+     
+          <div class="input-field col s3">
+          <input id="telFijos" name="telFijos" type="number" class="validate" required>
+          <label for="telFijos" center>Telefono Fijo</label>
+        </div>
+     
+          <div class="input-field col s3">
+          <input id="celulars" name="celulars" type="number" class="validate" required>
+          <label for="celulars" center>Celular</label>
+        </div>
+   
+      </div> 
+</div>
+   <div class="log row">
+    <div class="log row"></div> 
+          <div class="input-field">
+             <textarea id="textarea1" name="observaciones" type="text" class="materialize-textarea validate"></textarea>
+          <label for="textarea1 center">Observaciones</label>
+        </div>
+      </div>  
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l2"></div>
+      
+	</div>
+  <script>
+ //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+  
+  $('#estaAlquilado').change(function() {
+    
+    if ($('#estaAlquilado').val() == 0)
+    {
+        $(".inq").show();
+    };
+    
+    if ($('#estaAlquilado').val() == 1)
+    {
+        $(".inq").hide();
+        document.getElementById("nombres").required = false;
+        document.getElementById("apellidos").required = false;
+        document.getElementById("dnis").required = false;
+        document.getElementById("emails").required = false;
+        document.getElementById("telFijos").required = false;
+        document.getElementById("celulars").required = false;
+        document.getElementById("direccion").required = false;
+    };
+    
+});
+
+
+</script>
+    <script>
+       //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+ 
+          //Calendario
+ $('#ubicacion').change(function() {
+    
+    if($('#ubicacion').val() == 'Particular'){
+      $(".nro").show();
+	  $(".pro").show(); 
+      $(".prop").show();
+    };
+    if($('#ubicacion').val() == 'Comun'){
+      $(".nro").hide();
+	  $(".pro").hide();
+	  $(".prop").hide();
+	  
+	  document.getElementById("piso").required = false;
+      document.getElementById("numero").required = false;
+      document.getElementById("estaAlquilado").required = false;
+	  document.getElementById("nombre").required = false;
+      document.getElementById("apellido").required = false;
+      document.getElementById("dni").required = false;
+      document.getElementById("email").required = false;
+	  document.getElementById("telFijo").required = false;
+      document.getElementById("celular").required = false;
+	  document.getElementById("localidad").required = false;
+	  document.getElementById("cp").required = false;
+	  document.getElementById("direccion").required = false;	
+      document.getElementById("nombres").required = false;
+      document.getElementById("apellidos").required = false;
+      document.getElementById("dnis").required = false;
+      document.getElementById("emails").required = false;
+      document.getElementById("telFijos").required = false;
+      document.getElementById("celulars").required = false;
+	  
+	  
+	  
+    };
+    });
+	;</script>
+    <script>
+    $(document).ready(function(){
+    $('.datepicker').pickadate({
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+    selectMonths: true,
+    selectYears: 100, // Puedes cambiarlo para mostrar más o menos años
+    today: 'Hoy',
+    clear: 'Limpiar',
+    close: 'Ok',
+    closeOnSelect: true,
+    labelMonthNext: 'Siguiente mes',
+    labelMonthPrev: 'Mes anterior',
+    labelMonthSelect: 'Selecciona un mes',
+    labelYearSelect: 'Selecciona un año',
+    format: 'yyyy-mm-dd',
+   onClose: function() {
+        valid();
+    }
+     });
+  });
+
+
+        </script>
+        <script>    $('#textarea1').val(' ');
+  M.textareaAutoResize($('#textarea1'));</script>
+  {% endblock %}

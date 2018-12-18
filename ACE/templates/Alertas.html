@@ -1,0 +1,79 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m2 l1"></div>
+        <div class="card col s12 m8 l10 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Alertas</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+					        <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a class="active" href="#test-swipe-1">Datos Principales</a></li>
+    <li class="tab col s3"><a href="#test-swipe-2">Observaciones </a></li>
+  </ul>
+        
+		
+		 <div id="test-swipe-1" class=""> 
+   <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+               <th>Nombre Alerta</th>
+			  <th>Fecha de Vencimiento </th>
+			  <th>Es Mensual</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+    {% for dato in alertas %}
+          <tr>
+            <td>{{dato.nombre}}</td>    
+			<td>{{dato.fechaVencimiento}}</td>
+			<td>{{dato.esMensual}}</td>
+
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+	
+	
+  <div id="test-swipe-2" class="">
+   <div class="row"> 
+    <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Descripcion</th>
+				
+          </tr>
+        </thead>
+
+        <tbody>
+   {% for dato in alertas %}
+          <tr>
+            
+            <td>{{dato.descripcion}}</td>
+
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+ </div></div>
+ 
+ 
+
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l1"></div>
+      
+	</div>
+	
+ {% endblock %}

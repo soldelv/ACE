@@ -1,0 +1,105 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+		
+     
+    <div class="col s12 m1 l1"></div>
+        <div class="card col s12 m10 l10  z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Totales de las Cajas</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+        
+            			 <table class="responsive-table">
+        <thead>
+          <tr>
+			  <th>Administracion</th>
+              <th>Consorcio</th>
+              <th>Razon Social</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Hasta</th>
+              <th>Ingresos Totales</th>
+			  <th>Egresos Totales</th>
+			  <th>Resumen</th>
+          </tr>
+        </thead>
+
+        <tbody>
+		
+		{% if caja == '1' %}
+			<td> ARyS </td>
+			<td> --- </td>
+			<td> --- </td>
+			
+			{% if tiempo == '1' %} 
+				<td>{{dia}} </td>
+				<td> --- </td>
+				<td>${{ingresosTotalesAdministracionDia}}</td>
+				<td>${{egresosTotalesAdministracionDia}}</td>	
+				<td>${{resumenDia}}</td>
+			{% endif %}
+			
+			{% if tiempo == '2' %} 
+				<td>{{mes}} </td>
+				<td> --- </td>
+				<td>${{ingresosTotalesAdministracionMes}}</td>
+				<td>${{egresosTotalesAdministracionMes}}</td>	
+				<td>${{resumenMes}}</td>
+			{% endif %}
+			
+			{% if tiempo == '3' %} 
+				<td>{{fechaInicio}} </td>
+				<td>{{fechaCierre}} </td>
+				<td>${{ingresosTotalesAdministracionPeriodo}}</td>
+				<td>${{egresosTotalesAdministracionPeriodo}}</td>
+				<td>${{resumenPeriodo}}</td>
+			{% endif %}
+		{% endif %}
+		
+		{% if caja == '2' %}
+			<td> --- </td>
+			<td>{{consorcioDato.id}} </td>
+			<td>{{consorcioDato.razonSocial}} </td>
+			{% if tiempo == '1' %} 
+				<td>{{dia}} </td>
+				<td> --- </td>
+				<td>${{ingresosTotalesConsorcioDia}}</td>
+				<td>${{egresosTotalesConsorcioDia}}</td>
+				<td>${{resumenDia}}</td>				
+			{% endif %}
+			
+			{% if tiempo == '2' %} 
+				<td>{{mes}} </td>
+				<td> --- </td>
+				<td>${{ingresosTotalesConsorcioMes}}</td>
+				<td>${{egresosTotalesConsorcioMes}}</td>	
+				<td>${{resumenMes}}</td>
+			{% endif %}
+			
+			{% if tiempo == '3' %} 
+				<td>{{fechaInicio}} </td>
+				<td>{{fechaCierre}} </td>
+				<td>${{ingresosTotalesConsorcioPeriodo}}</td>
+				<td>${{egresosTotalesConsorcioPeriodo}}</td>
+				<td>${{resumenPeriodo}}</td>
+			{% endif %}
+		
+		{% endif %}
+		
+		
+	
+      
+        </tbody>
+      </table>
+
+
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m1 l1"></div>
+      
+	</div>
+	
+ {% endblock %}

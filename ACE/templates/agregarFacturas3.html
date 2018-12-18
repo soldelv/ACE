@@ -1,0 +1,523 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+ <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+
+
+
+    <div class="col s12 m2 l3"></div>
+        <div class="card col s12 m8 l6 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Factura</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+            			<form method="post" class="form">{% csrf_token %} 
+                    
+                     <div class="input-field col s6">
+      <select name="dato" id="dato"  class="validate">
+      <option value="" disabled selected>Movimiento/Pago de Expensas</option>
+      <option value="Movimiento">Movimiento</option>
+      <option value="Pago de Expensas">Pago de Expensas</option>
+    </select>
+  </div>
+        <div class="expensas" style="display: none;">
+        
+      <div class="input-field col s6">
+        <input name="consorcio" id="consorcio" class="validate" >
+        <label for="consorcio">Consorcio</label>
+      </div> 
+      <div class="input-field col s6">
+          <input id="depto" name="depto" type="text" class="validate" >
+          <label for="depto" center>Piso y Departamento</label>
+        </div>
+   
+          <div class="input-field col s6">
+          <input id="unidadfuncional" name="unidadfuncional" type="number" class="validate" >
+          <label for="unidadfuncional" center>Unidad Funcional</label>
+        </div>
+      
+        <div class="input-field col s6">
+      <select name="tipoCaja" id="tipoCaja4"  class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="Bancaria">Bancaria</option>
+      <option value="Cheque">Cheque</option>
+      <option value="Efectivo">Efectivo</option>
+      </select> 
+</div>
+         <div class="log row"></div>
+         </div>
+                    
+         <div class="movi" style="display: none;">
+        
+    <div class="input-field col s6">
+      <select name="factura" id="factura"  class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+           
+         
+          <div class="se" style="display: none;">
+            <div class="log row" >
+          <div class="input-field col s6">
+          <input id="nro" name="nro" type="text" class="validate">
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+         <div class="input-field col s6">
+          <input id="servicio" name="servicio" type="text" class="validate" >
+          <label for="servicio" center>Servicio</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="proveedor" name="proveedor" type="text" class="validate" >
+          <label for="proveedor" center>Proveedor</label>
+        </div>
+        <div class="input-field col s6">
+      <select name="tipo" class="validate">
+      <option value="" disabled selected>Ingreso/Egreso</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  </div>
+  <div class="input-field col s6" >
+    <input id="emision" name="emision" type="date" class=" validate" >
+    <label for="emision" center>Fecha de Emision</label>
+    </div>
+    <div class="input-field col s6" >
+      <input id="vencimiento" name="vencimiento" type="date" class=" validate" >
+      <label for="vencimiento" center>Fecha de Vencimiento</label>
+      </div>
+      </div>
+      
+      <div class="input-field col s6">
+      <select name="caja" id="caja"  class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+  <div class="admin" id="admin" style="display: none;"> 
+        <div class="input-field col s6">
+      <select name="tipoCaja" id="tipoCaja"  class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="Bancaria">Bancaria</option>
+      <option value="Cheque">Cheque</option>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Otras">Otras</option>
+      <option value="Vales">Vales</option>
+      </select>
+  </div>
+
+  </div>
+  <div class="cons" id="cons" style="display: none;">
+    
+    <div class="input-field col s6">
+        <input name="consorcio" id="consorcio" class="validate" >
+        <label for="consorcio">Consorcio</label>
+      </div> 
+        <div class="input-field col s6">
+      <select name="tipoCaja" id="tipoCajas"  class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="Bancaria">Bancaria</option>
+      <option value="Cheque">Cheque</option>
+      <option value="Efectivo">Efectivo</option>
+      </select> 
+</div>
+   
+  </div>   
+        <div class="log row"></div>
+      </div>
+      
+    
+     <div class="ga" style="display: none;">
+      <div class="lo row">
+      <div class="input-field col s6">
+          <input id="gasto" name="gasto" type="text" class="validate" >
+          <label for="gasto" center>Gasto</label>
+        </div>     
+    <div class="input-field col s6">
+      <select name="tipofactura" id="tipofactura"  class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+  </div>
+  <div class="input-field col s6">
+      <select name="tipo"  class="validate">
+      <option value="" disabled selected>Ingreso/Egreso</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  </div>
+  <div class="input-field col s6" >
+  <input id="emision" name="emision" type="date" class=" validate" >
+  <label for="emision" center>Fecha de Emision</label>
+  </div>
+ 
+  
+     </div>
+    <div class="input-field col s6">
+      <select name="caja" id="cajas"  class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+  <div class="admins" id="admins" style="display: none;">
+        <div class="input-field col s6">
+      <select name="tipoCaja" id="tipoCaja2"  class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="Bancaria">Bancaria</option>
+      <option value="Cheque">Cheque</option>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Otras">Otras</option>
+      <option value="Vales">Vales</option>
+      </select>
+  </div>
+   
+</div>
+
+  <div class="con" id="con" style="display: none;">
+   
+    <div class="input-field col s6">
+        <input name="consorcio" id="consorcio" class="validate" >
+        <label for="consorcio">Consorcio</label>
+      </div>
+        <div class="input-field col s6">
+      <select name="tipoCaja" id="tipoCaja3"  class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="Bancaria">Bancaria</option>
+      <option value="Cheque">Cheque</option>
+      <option value="Efectivo">Efectivo</option>
+      </select>
+  
+  </div>
+  
+
+  </div>  
+
+
+          
+        <div class="log row"></div>
+        
+  </div>
+  </div> 
+  <div class="comun" id="comun" style="display: none;">
+        <div class="input-field col s6">
+    <input id="pago" name="pago" type="date" class=" validate" >
+    <label for="pago" center>Fecha de Pago</label>
+    </div>
+        <div class="bancaria" id="bancaria" style="display: none;">
+          <div class="input-field col s6">
+          <input id="banco" name="banco" type="text" class="validate" >
+          <label for="banco" center>Banco</label>
+        </div>
+          <div class="input-field col s6">
+          <input id="cuenta" name="cuenta" type="number" class="validate" >
+          <label for="cuenta" center>Numero de Cuenta</label>
+        </div>
+     </div>  
+          <div class="input-field col s6">
+          <input id="monto" name="monto" type="number" class="validate" >
+          <label for="monto" center>Monto</label>
+        </div>
+      </div> 
+    
+    <div class="obs" id="obs" style="display: none;">
+      <div class="log row">
+          <div class="input-field col s12">
+             <textarea id="textarea1" name="observaciones" type="text" class="materialize-textarea validate"></textarea>
+          <label for="textarea1">Observaciones</label>
+        </div>
+      </div> 
+      </div>
+      <div class="log row"> </div>
+
+<div class="log row"></div>
+      <div class="boton center">
+         <div class="botn row">
+          <div class="log row"></div>
+          <div class="log row"></div>
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+
+</div>
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m2 l3"></div>
+      
+	</div>
+  <script>
+   
+
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'}); 
+   $('#textarea1').val(' ');
+  M.textareaAutoResize($('#textarea1'));
+  
+
+  </script>
+	 <script>
+$('.datepicker').pickadate({
+     selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    format: 'yyyy/mm/dd',
+   onClose: function() {
+        valid();
+    }
+     });
+     //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});        
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});        
+          //Calendario
+
+
+
+
+        </script>
+ 
+  <script> 
+    $('#caja').change(function() {
+    
+    if($('#caja').val() == '2'){
+      $(".cons").show();
+      $(".admin").hide();
+      
+    };
+    if($('#caja').val() == '1'){
+      $(".admin").show();
+      $(".cons").hide();
+      document.getElementById("consorcio").required = false;
+    };
+    });
+    $('#caja').change(function() {
+    
+    if($('#caja').val() == '2'){
+      $(".con").show();
+      $(".admins").hide();
+      
+    };
+    if($('#caja').val() == '1'){
+      $(".admins").show();
+      $(".con").hide();
+      document.getElementById("consorcio").required = false;
+    };
+    });
+    $('#cajas').change(function() {
+    
+    if($('#cajas').val() == '2'){
+      $(".con").show();
+      $(".admins").hide();
+      
+    };
+    if($('#cajas').val() == '1'){
+      $(".admins").show();
+      $(".con").hide();
+      document.getElementById("consorcio").required = false;
+    };
+    });
+
+
+$('#dato').change(function() {
+    
+    if($('#dato').val() == 'Movimiento'){
+      $(".movi").show();
+      $(".expensas").hide();
+
+      document.getElementById("depto").required = false;
+      document.getElementById("unidadfuncional").required = false;
+      document.getElementById("banco").required = false;
+      document.getElementById("cuenta").required = false;
+      document.getElementById("consorcio").required = false;
+    };
+    if($('#dato').val() == 'Pago de Expensas'){
+      $(".expensas").show();
+      $(".movi").hide();
+      $(".obs").show();
+      document.getElementById("nro").required = false;
+      document.getElementById("tipo").required = false;
+      document.getElementById("servicio").required = false;
+      document.getElementById("proveedor").required = false;
+      document.getElementById("tipofactura").required = false;
+      document.getElementById("emision").required = false;
+      document.getElementById("caja").required = false;
+      document.getElementById("vencimiento").required = false;
+      document.getElementById("factura").required = false;
+      document.getElementById("gasto").required = false;
+    };
+    });
+
+
+  $('#factura').change(function() {
+    
+   
+    if ($('#factura').val() == 'Gasto')
+    {
+        $(".ga").show();
+        $(".se").hide();
+        $(".comun").show();
+        $(".obs").show();
+          
+        document.getElementById("servicio").required = false;
+      document.getElementById("vencimiento").required = false;
+      document.getElementById("factura").required = false;
+      document.getElementById("nro").required = false;
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+
+    if ($('#factura').val() == 'Servicio')
+    {
+        $(".se").show();
+        $(".ga").hide();
+        $(".comun").show();
+        $(".obs").show();
+        document.getElementById("factura").required = false;
+        document.getElementById("tipofactura").required = false;
+        document.getElementById("gasto").required = false;
+        document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+   
+    
+
+});</script>
+<script>
+    $('#tipoCaja').change(function() {
+    
+    if($('#tipoCaja').val() == 'Bancaria'){
+      $(".bancaria").show();
+    };
+    if($('#tipoCaja').val() == 'Cheque'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja').val() == 'Efectivo'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja').val() == 'Otras'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja').val() == 'Vales'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+    $('#tipoCaja3').change(function() {
+    
+    if($('#tipoCaja3').val() == 'Bancaria'){
+      $(".bancaria").show();
+    };
+    if($('#tipoCaja3').val() == 'Cheque'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja3').val() == 'Efectivo'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja3').val() == 'Otras'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja3').val() == 'Vales'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+   
+  </script>
+  <script>
+    $('#tipoCajas').change(function() {
+    
+    if($('#tipoCajas').val() == 'Bancaria'){
+      $(".bancaria").show();
+    };
+    if($('#tipoCajas').val() == 'Cheque'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCajas').val() == 'Efectivo'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCajas').val() == 'Otras'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCajas').val() == 'Vales'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+    $('#tipoCaja2').change(function() {
+    
+    if($('#tipoCaja2').val() == 'Bancaria'){
+      $(".bancaria").show();
+    };
+    if($('#tipoCaja2').val() == 'Cheque'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja2').val() == 'Efectivo'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja2').val() == 'Otras'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja2').val() == 'Vales'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+
+     $('#tipoCaja4').change(function() {
+    
+    if($('#tipoCaja4').val() == 'Bancaria'){
+      $(".bancaria").show();
+    };
+    if($('#tipoCaja4').val() == 'Cheque'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipoCaja4').val() == 'Efectivo'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+   
+  </script>
+ {% endblock %}

@@ -1,0 +1,39 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px;  ">
+		
+     
+    <div class="col s12 m3 l4"></div>
+        <div class="card col s12 m6 l4 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Mostrar Unidad Funcional</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+
+        
+            			<form method="post" class="form">{% csrf_token %}
+  
+           <div class="log row">
+          <div class="input-field">
+          <input id="consorcio" name="consorcio" type="text" class="validate" required>
+          <label for="consorcio" center>Consorcio</label>
+        </div>
+        </div>
+       
+      <div class="boton center">
+         <div class="botn row" style="padding-top: 20px;">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Mostrar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+ 
+  </div>
+</form>
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m3 l4"></div>
+      
+	</div>
+	
+  {% endblock %}

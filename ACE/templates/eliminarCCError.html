@@ -1,0 +1,126 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+	<link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+
+             <div class="col s12 m3 l4"></div>
+        <div class="card col s12 m6 l4 z-depth-5" style="padding-right: 0px;
+  padding-left: 0px;">
+          <div class="card-content z-depth-5">
+         		<span class="card-title" style="color: red;">¡La cuenta seleccionada no existe!</span>
+				<span style="color: red;">Por favor verifique la informacion e ingrese nuevamente</span> 
+          </div>
+                <div class="card-action z-depth-5">
+				
+                  <form method="post" class="form">{% csrf_token %}
+  <div class="log row">
+          <div class="input-field col s12">
+          <input id="consorcio" name="consorcio" type="text" class="validate" required>
+          <label for="consorcio" center>Consorcio</label>
+        </div>
+      </div>
+      <div class="lo row"></div>
+      <div class="lo row"></div>
+       <div class="lo row">
+      
+    <div class="input-field col s12">
+      <select name="tipo" id="tipo" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+
+      <div class="bancaria" id="bancaria" style="display: none;">
+        <div class="lo row"></div>
+      <div class="lo row"></div>
+     <div class="lo row"></div>
+         <div class="lo row">
+       
+          <div class="input-field col s12">
+          <input id="banco" name="banco" type="text" class="validate" required>
+          <label for="banco" center>Banco</label>
+        </div>
+       <div class="lo row"></div>
+       <div class="lo row"></div>
+      <div class="lo row"></div>
+
+          <div class="input-field col s12">
+          <input id="cuenta" name="cuenta" type="number" class="validate" required>
+          <label for="cuenta" center>Numero de Cuenta</label>
+        </div>
+       
+     </div>
+     
+     </div> 
+     <div class="lo row"></div>
+     <div class="lo row"></div>
+      </div>
+
+         <div class="lo row">
+      <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      
+      <h4>¿Esta seguro de que quiere eliminar la caja?</h4>
+      <h4 style="color: red;">Los datos eliminados no se recuperaran.</h4>
+    </div>
+    <div class="modal-footer">
+      <button class="btn waves-effect waves-light center" type="submit" name="valor" value="1">Si</button>
+      <button class="btn waves-effect waves-light center" type="submit" name="valor" value="2">No</button>
+
+    </div>
+  </div>
+  </div>   
+   
+
+      <div class="boton center" >
+         <div class="botn row">
+      <button class="btn modal-trigger center" data-target="modal1" type="submit" name="action">Eliminar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+
+</div>
+  </div>
+</form>
+                </div><div class="borde"></div>
+            </div> 
+            <div class="col s12 m3 l4"></div>
+      
+	</div>
+ <script>
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'}); 
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+  </script>
+  <script>
+    $('#tipo').change(function() {
+    
+    if($('#tipo').val() == '1'){
+      $(".bancaria").show();
+    };
+    if($('#tipo').val() == '2'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    if($('#tipo').val() == '3'){
+      $(".bancaria").hide();
+      document.getElementById("cuenta").required = false;
+      document.getElementById("banco").required = false;
+    };
+    });
+   
+  </script>
+ {% endblock %}

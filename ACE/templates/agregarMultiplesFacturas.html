@@ -1,0 +1,429 @@
+{% extends "ejemplo.html" %} 
+ {% block content %}
+ <link rel="stylesheet" href="{{ STATIC_URL}}css/factura.css">
+	<div class="contenido row" style="background-image: url({{ STATIC_URL}}img/fondo.jpg); background-size:100%100%; margin: 0px; ">
+
+<!-- jQuery UI !-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL}}js/jquery.easing.1.3.js"></script>
+
+    <div class="col s12 m3 l4"></div>
+        <div class="card col s12 m6 l4 z-depth-5" style="padding-right: 0px;
+	padding-left: 0px;">
+        	<div class="card-content z-depth-5">
+        		<span class="card-title">Agregar Facturas</span> 
+        	</div>
+            		<div class="card-action z-depth-5">
+                  <ul class = "collapsible" data-collapsible = "expandable">
+         <li>
+            <div class = "collapsible-header">
+               <i class = "material-icons">filter_drama</i>First Section</div>
+            <div class = "collapsible-body">                  
+              <form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field">
+          <input id="nro" name="nro" type="text" class="validate" required>
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+      </div>
+        <div class="lo row">
+    <div class="input-field">
+      <select name="tipofactura" id="tipofactura" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+  </div>
+<div class="ab row" id="ab" style="display: none;">
+    <div class="input-field">
+      
+      <input id="abono" name="abono">
+      <label for="abono">Abono</label>
+
+</div>
+  </div>
+  <div class="ga row" id="ga" style="display: none;">
+    <div class="input-field">
+  
+      <input id="gasto" name="gasto">
+      <label for="gasto">Gasto</label>
+    
+</div>
+  </div>
+  <div class="se row" id="se" style="display: none;">
+    <div class="input-field">
+
+      <input id="servicio" name="servicio">
+      <label for="servicio">Servicio</label>
+ 
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field">
+          <input id="vencimiento" name="vencimiento" type="date" class="datepicker" required>
+          <label for="vencimiento" center>Fecha de Vencimiento</label>
+        </div>
+      </div> 
+      <div class="lo row">
+          <div class="input-field">
+          <input id="pago" name="pago" type="date" class="datepicker" required>
+          <label for="pago" center>Fecha de Pago</label>
+        </div>
+      </div> 
+       <div class="lo row">
+    <div class="input-field">
+      <select name="tipo" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field">
+      <select name="caja" id="caja" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+  </div>
+      
+<div class="cons row" id="cons" style="display: none;">
+    <div class="input-field">
+
+        <input name="consorcio" id="consorcio" required>
+        <label for="consorcio">Consorcio</label>
+          
+</div>
+  </div>
+      <div class="lo row">
+    <div class="input-field">
+      <select name="tipoCaja" id="tipoCaja" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  </div>
+    <div class="log row">
+          <div class="input-field">
+          <input id="monto" name="monto" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+
+</div><
+</form></div>
+         </li>
+         
+         <li>
+            <div class = "collapsible-header">
+               <i class = "material-icons">place</i>Second Section</div>
+            <div class = "collapsible-body">                  <form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field">
+          <input id="nro" name="nro" type="text" class="validate" required>
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+      </div>
+        <div class="lo row">
+    <div class="input-field">
+      <select name="tipofactura" id="tipofactura" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+  </div>
+<div class="ab row" id="ab" style="display: none;">
+    <div class="input-field">
+      
+      <input id="abono" name="abono">
+      <label for="abono">Abono</label>
+
+</div>
+  </div>
+  <div class="ga row" id="ga" style="display: none;">
+    <div class="input-field">
+  
+      <input id="gasto" name="gasto">
+      <label for="gasto">Gasto</label>
+    
+</div>
+  </div>
+  <div class="se row" id="se" style="display: none;">
+    <div class="input-field">
+
+      <input id="servicio" name="servicio">
+      <label for="servicio">Servicio</label>
+ 
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field">
+          <input id="vencimiento" name="vencimiento" type="date" class="datepicker" required>
+          <label for="vencimiento" center>Fecha de Vencimiento</label>
+        </div>
+      </div> 
+      <div class="lo row">
+          <div class="input-field">
+          <input id="pago" name="pago" type="date" class="datepicker" required>
+          <label for="pago" center>Fecha de Pago</label>
+        </div>
+      </div> 
+       <div class="lo row">
+    <div class="input-field">
+      <select name="tipo" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field">
+      <select name="caja" id="caja" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+  </div>
+      
+<div class="cons row" id="cons" style="display: none;">
+    <div class="input-field">
+
+        <input name="consorcio" id="consorcio" required>
+        <label for="consorcio">Consorcio</label>
+          
+</div>
+  </div>
+      <div class="lo row">
+    <div class="input-field">
+      <select name="tipoCaja" id="tipoCaja" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  </div>
+    <div class="log row">
+          <div class="input-field">
+          <input id="monto" name="monto" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+</div>
+</div></form></div>
+         </li>
+         
+         <li>
+            <div class = "collapsible-header">
+               <i class = "material-icons">whatshot</i>Third Section</div>
+            <div class = "collapsible-body">                  <form method="post" class="form">{% csrf_token %}
+
+         <div class="log row">
+          <div class="input-field">
+          <input id="nro" name="nro" type="text" class="validate" required>
+          <label for="nro" center>Nro de Factura</label>
+        </div>
+      </div>
+        <div class="lo row">
+    <div class="input-field">
+      <select name="tipofactura" id="tipofactura" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Factura</option>
+      <option value="Abono">Abono</option>
+      <option value="Gasto">Gasto</option>
+      <option value="Servicio">Servicio</option>
+    </select>
+  </div>
+  </div>
+<div class="ab row" id="ab" style="display: none;">
+    <div class="input-field">
+      
+      <input id="abono" name="abono">
+      <label for="abono">Abono</label>
+
+</div>
+  </div>
+  <div class="ga row" id="ga" style="display: none;">
+    <div class="input-field">
+  
+      <input id="gasto" name="gasto">
+      <label for="gasto">Gasto</label>
+    
+</div>
+  </div>
+  <div class="se row" id="se" style="display: none;">
+    <div class="input-field">
+
+      <input id="servicio" name="servicio">
+      <label for="servicio">Servicio</label>
+ 
+</div>
+  </div>
+  <div class="lo row">
+          <div class="input-field">
+          <input id="vencimiento" name="vencimiento" type="date" class="datepicker" required>
+          <label for="vencimiento" center>Fecha de Vencimiento</label>
+        </div>
+      </div> 
+      <div class="lo row">
+          <div class="input-field">
+          <input id="pago" name="pago" type="date" class="datepicker" required>
+          <label for="pago" center>Fecha de Pago</label>
+        </div>
+      </div> 
+       <div class="lo row">
+    <div class="input-field">
+      <select name="tipo" required="required" class="validate">
+      <option value="" disabled selected>Tipo</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+  
+  </div>
+  </div>
+       <div class="lo row">
+    <div class="input-field">
+      <select name="caja" id="caja" required="required" class="validate">
+      <option value="" disabled selected>Caja</option>
+      <option value="1">Caja Administración</option>
+      <option value="2">Caja Consorcio</option>
+    </select>
+  
+  </div>
+  </div>
+      
+<div class="cons row" id="cons" style="display: none;">
+    <div class="input-field">
+
+        <input name="consorcio" id="consorcio" required>
+        <label for="consorcio">Consorcio</label>
+          
+</div>
+  </div>
+      <div class="lo row">
+    <div class="input-field">
+      <select name="tipoCaja" id="tipoCaja" required="required" class="validate">
+      <option value="" disabled selected>Tipo de Caja</option>
+      <option value="1">Bancaria</option>
+      <option value="2">Cheque</option>
+      <option value="3">Efectivo</option>
+    </select>
+  
+  </div>
+  </div>
+    <div class="log row">
+          <div class="input-field">
+          <input id="monto" name="monto" type="number" class="validate" required>
+          <label for="monto" center>Monto</label>
+        </div>
+      </div>
+
+      <div class="boton center">
+         <div class="botn row">
+      <button class="btn waves-effect waves-light center" type="submit" name="action">Agregar</button>
+  <button class="btn waves-effect waves-light center" type="reset" name="action">Borrar</button></div>
+  <div class="bot row">
+
+</div></div>
+</div>
+</form>
+         </li>
+      </ul>   
+            		
+  
+          			</div><div class="borde"></div>
+          	</div> 
+          	<div class="col s12 m3 l4"></div>
+      
+	</div>
+	 <script>
+     //valido select nulo
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});        
+    $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});        
+          //Calendario
+
+  $('.datepicker').pickadate({
+     selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    format: 'dd/mm/yyyy',
+   onClose: function() {
+        valid();
+    }
+     });
+
+
+        </script>
+ 
+  <script> 
+    $('#caja').change(function() {
+    
+    if($('#caja').val() == '2'){
+      $(".cons").show();
+    };
+    if($('#caja').val() == '1'){
+      $(".cons").hide();
+      document.getElementById("consorcio").required = false;
+    };
+    });
+  $('#tipofactura').change(function() {
+    
+    if ($('#tipofactura').val() == 'Abono')
+    {
+        $(".ab").show();
+        $(".ga").hide();
+        $(".se").hide();
+    };
+    
+    if ($('#tipofactura').val() == 'Gasto')
+    {
+        $(".ga").show();
+        $(".ab").hide();
+        $(".se").hide();
+    };
+
+    if ($('#tipofactura').val() == 'Servicio')
+    {
+        $(".se").show();
+        $(".ga").hide();
+        $(".ab").hide();
+    };
+   
+    
+});</script>
+ {% endblock %}

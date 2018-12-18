@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL}}css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <style type="text/css">
+	 
+	 @media only screen and (min-width : 1224px) {
+/* Styles */
+.menus{
+              
+               height: 65px;
+               background-color: #03a9f4;
+
+        }
+        .z-depth-3{
+          height: 3px;
+        }
+        .sidenav-header{
+           background-color: #03a9f4;
+        }
+        .footer .row{
+          margin-bottom: 20px;
+        }
+        .final{
+          height: 40px;
+          background-color: #03a9f4;
+        }
+        .buscar{
+          height: 65px;
+        }
+        .contenido{
+	background-image: url({{ STATIC_URL}}img/fondo.jpg);
+	background-size:100%100%;
+	height:768px;
+  margin: 0px;
+        }
+		.registro{
+	color: #333;
+	padding-top: 100px;
+	padding-right: 200px;
+	padding-bottom: 100px;
+	padding-left: 350px;
+			}
+      .log{
+	padding-right: 170px;
+	padding-left: 170px;
+      }
+	  .lo{
+	  padding-top: 70px;
+	  padding-right: 170px;
+	padding-left: 170px;}
+	.card{background-color:#03a9f4;
+	height:500px;
+	width: 600px;}	
+	.card-action{
+	background-color:#FFF;
+	padding: 100px;
+	height: 400px;
+	width: 600px;
+}
+
+      .card-title {
+	text-align: center;
+}
+.boton{
+	padding-right: 15px;
+	padding-left: 120px;}
+
+}
+
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1223px) {
+
+/* Styles */
+.menus{
+              
+               height: 65px;
+               background-color: #03a9f4;
+
+        }
+        .z-depth-3{
+          height: 3px;
+        }
+        .sidenav-header{
+           background-color: #03a9f4;
+        }
+        .footer .row{
+          margin-bottom: 20px;
+        }
+        .final{
+          height: 40px;
+          background-color: #03a9f4;
+        }
+        .buscar{
+          height: 65px;
+        }
+        .contenido{
+	background-image: url({{ STATIC_URL}}img/fondo.jpg);
+	background-size:100%100%;
+	height:768px;
+	width:auto;
+  margin: 0px;
+}
+.registro{
+	color: #333;
+	padding-top: 100px;
+	padding-right: 160px;
+	padding-bottom: 100px;
+	padding-left: 160px;
+			}
+      .log{
+	padding-right: 70px;
+	padding-left: 70px;
+      }
+	  .lo{
+	  padding-top: 70px;
+	  padding-right: 70px;
+	padding-left: 70px;}
+	.card{background-color:#03a9f4;
+	height:350px;
+	width: 400px;}	
+	.card-action{
+	background-color:#FFF;
+	padding: 100px;
+	height: 250px;
+	width: 400px;
+}
+
+      .card-title {
+	text-align: center;
+}
+.boton{
+	padding-right: 15px;
+	padding-left: 50px;}
+
+}
+.botn{
+  padding-top: 20px;
+}
+.bot{
+  padding-top: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+        
+		
+      </style>  
+<nav class="menus">
+  
+   <div class="nav-wrapper z-depth-5">
+
+      <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large left"><i class="material-icons">menu</i></a>
+      <a href="0 inicio.html" class="brand-logo center">ACE</a>
+<div class="buscar hide-on-small-only" id="topbarsearch">
+                              <div class="input-field col s20 white-text right">
+                                <i class="white-text material-icons prefix">search</i>
+                                <input type="text" id="autocomplete-input" class="autocomplete white-text " >
+                                </div>
+                              </div>
+			 
+      
+     
+      
+      <ul class="side-nav white" id="mobile-demo">
+        
+        
+        <li class="sidenav-header">
+          <div class="z-depth-4">
+          <div class="row">
+            <div class="col s4">
+               <img src="{{STATIC_URL}}img/arys.jpeg" alt="" width="48px" height="48px" class="circle responsive-img valign profile-image"> </div>
+            <div class="col s8">
+                <a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown">Usuario<i class="mdi-navigation-arrow-drop-down center"></i></a>
+                <ul id="profile-dropdown" class="dropdown-content">
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/iniciarsesion/">Ingresar</a></li>
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/registro/">Registrarse</a></li>
+                    <li><a href="http://127.0.0.1:8000/AdminConsorcios/usuario/cerrarsesion/">Salir</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        </li>
+        
+        
+        
+        
+        
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">attach_money</i>Ingresos/Egresos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarFactura/"><i class="material-icons">add</i>Ingresar Facturas</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/modificarFactura/"><i class="material-icons">create</i>Modificar Facturas</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarFactura/"><i class="material-icons">crop_original</i>Mostrar Facturas</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">location_city</i>Consorcios<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarConsorcio/"><i class="material-icons">add</i>Ingresar Consorcio</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/modificarConsorcio/"><i class="material-icons">create</i>Modificar/Eliminar Consorcio</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarConsorcio/"><i class="material-icons">crop_original</i>Mostrar Consorcios</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="white">
+          <ul class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect waves-blue"><i class="material-icons">report_problem</i>Reclamos<i class="material-icons right" style="margin-right:0;">arrow_drop_down</i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/agregarReclamo/"><i class="material-icons">add</i>Ingresar Reclamos</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/modificarReclamo/"><i class="material-icons">create</i>Modificar/Eliminar Reclamos</a></li>
+                  <li><a class="waves-effect waves-blue" href="http://127.0.0.1:8000/AdminConsorcios/mostrarReclamo/"><i class="material-icons">crop_original</i>Mostrar Reclamos</a></li>
+                  <li><div class="divider"></div></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+</nav>
+  
+    </head>
+<body>
+	<header>
+</header>
+     
+<div class="contenido">
+
+     <div class="registro" >
+     <div class="row">
+    <div class="col s50">
+        <div class="card z-depth-5">
+          <div class="card-content white-text z-depth-5">
+          <span class="card-title">Reclamos</span> </div>
+          <div class="z-depth-4">
+          </div>
+            <div class="card-action white">
+
+          <table class="responsive-table">
+        <thead>
+          <tr>
+              <th>Fecha</th>
+              <th>Ubicacion</th>
+			  <th>Estado</th>
+			  <th>Descripcion</th>
+          </tr>
+        </thead>
+
+        <tbody>
+         {% for dato in reclamos %}
+          <tr>
+            <td>{{dato.fecha}}</td>
+			<td>{{dato.ubicacion}}</td>
+			<td>{{dato.estado}}</td>
+			<td>{{dato.descripcion}}</td>
+          </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+          </div>
+          </div>
+        </div>
+      </div>
+
+ 
+            
+</div>
+
+    </div>
+    <footer class="final">
+         
+            <div class="footer row">
+              
+              <div class="col l6 s12"></div>
+          </div>
+          <div class="footer-copyright">
+           
+          
+            <div class="center z-depth-5">
+          UNLA © 2017 Copyright
+            </div>
+           
+          </div>
+        </div>
+        </footer>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="{{ STATIC_URL}}js/materialize.min.js"></script>
+<script type="text/javascript">
+// SIDEBAR
+$(document).ready(function(){
+  $('.button-collapse').sideNav({
+      menuWidth: 300, // Default is 300
+      edge: 'left', // Choose the horizontal origin
+      closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      draggable: true // Choose whether you can drag to open on touch screens
+    }
+  );
+
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Borrar',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+//Select
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+  // START OPEN
+  $('.button-collapse').sideNav('show');
+});
+</script>
+</body>
+</html>
